@@ -1,28 +1,14 @@
-// todo funcoes devem ser capazes de lidar com número variavel de pontos
+class core {
 
-function process(domainObjectCoordinates) {
-    const imageObjectCoordinates = getImageObjectCoordinates(domainObjectCoordinates);
-    draw(domainObjectCoordinates, imageObjectCoordinates);
+    constructor(impl) {
+        this.impl = impl;
+    }
+
+    process(domainObjectCoordinates) {
+        const domainObjectComplex = this.impl.convertObjectCoordinatesToComplexNumbers(domainObjectCoordinates);
+        const imageObjectComplex = this.impl.findImagesOfObject(domainObjectComplex);
+        const imageObjectCoordinates = this.impl.convertObjectComplexNumbersToCoordinates(imageObjectComplex);
+        this.impl.draw(domainObjectCoordinates, imageObjectCoordinates);
+    }
 }
 
-function getImageObjectCoordinates(domainObjectCoordinates) {
-    const domainObjectComplex = convertObjectCoordinatesToComplexNumbers(domainObjectCoordinates);
-    const imageObjectComplex = findImagesOfObject(domainObjectComplex);
-    return convertObjectComplexNumbersToCoordinates(imageObjectComplex);
-}
-function convertObjectCoordinatesToComplexNumbers(point) {
-
-    // todo
-}
-
-function convertObjectComplexNumbersToCoordinates(complex) {
-    // todo
-}
-
-function findImagesOfObject(coefficient) {
-    // todo
-}
-
-function draw(objects) {
-    // todo
-}
