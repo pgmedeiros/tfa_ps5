@@ -68,3 +68,4 @@ function testConvertObjectComplexNumbersToCoordinates() {
 testGetComplex();
 testGetImageOfGivenDomainNumber();
 testConvertconvertObjectCoordinatesToComplexNumbers();
+testConvertObjectComplexNumbersToCoordinates();
