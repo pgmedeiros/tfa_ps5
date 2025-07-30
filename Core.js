@@ -1,4 +1,4 @@
-class core {
+class Core {
 
     constructor(draw, poly, conversor) {
         this.draw = draw;

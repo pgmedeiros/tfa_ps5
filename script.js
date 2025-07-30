@@ -1,14 +1,6 @@
 function init() {
-  let type = 'REAL_DOT' // irá vir do usuário
-  let impl = factory(type);
-  core(impl).process();
-}
-
-function factory(type) {
-  if(type == 'REAL_DOT') {
-    return new RealDotImpl();
-  }
-
+  // todo padrao factory sera utilizado aqui. cada tipo sera criado conforme demandado pelo usuario
+  Core(draw, poly, conversor).process();
 }
 
 init();
