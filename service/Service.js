@@ -1,4 +1,4 @@
-class Core {
+export default class Service {
 
     constructor(draw, poly, conversor) {
         this.draw = draw;
