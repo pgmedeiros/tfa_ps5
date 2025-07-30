@@ -1,14 +1,15 @@
 class core {
 
-    constructor(impl) {
-        this.impl = impl;
+    constructor(draw, poly, conversor) {
+        this.draw = draw;
+        this.poly = poly;
+        this.conversor = conversor;
     }
 
     process(domainObjectCoordinates) {
-        const domainObjectComplex = this.impl.convertObjectCoordinatesToComplexNumbers(domainObjectCoordinates);
-        const imageObjectComplex = this.impl.findImagesOfObject(domainObjectComplex);
-        const imageObjectCoordinates = this.impl.convertObjectComplexNumbersToCoordinates(imageObjectComplex);
-        this.impl.draw(domainObjectCoordinates, imageObjectCoordinates);
+        const domainObjectComplex = this.conversor.convertObjectCoordinatesToComplexNumbers(domainObjectCoordinates);
+        const imageObjectComplex = this.poly.getImageOfGivenDomainNumber(domainObjectComplex);
+        const imageObjectCoordinates = this.conversor.convertObjectComplexNumbersToCoordinates(imageObjectComplex);
+        this.draw.draw(domainObjectCoordinates, imageObjectCoordinates);
     }
 }
-

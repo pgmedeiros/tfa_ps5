@@ -1,5 +1,7 @@
-import Polynomial from "./polynomial.js";
-import Term from "./term.js";
+import Polynomial from "./math/polynomial.js";
+import Term from "./math/term.js";
+import Coordinates from "./identity/Coordinates.js";
+import Convert from "./identity/Conversor.js";
 
 // testes polynomial
 
@@ -9,7 +11,7 @@ function testGetComplex() {
     console.log(p.getComplex(1,2));
 }
 
-function testgetImageOfGivenDomainNumber() {
+function testGetImageOfGivenDomainNumber() {
     let p = new Polynomial();
 
     const c1= p.getComplex(0,0);
@@ -31,5 +33,38 @@ function testgetImageOfGivenDomainNumber() {
 
 }
 
+// Testa conversao de coordenadas para complexos
+
+function testConvertconvertObjectCoordinatesToComplexNumbers() {
+
+    const coordinates = new Coordinates(0, 0);
+    let v = new Convert(coordinates);
+
+    console.log('Deve ser 0, 0', v.convertObjectCoordinatesToComplexNumbers(coordinates));
+
+    const coordinates2 = new Coordinates(10, 15);
+    let v2 = new Convert(coordinates2);
+
+    console.log('Deve ser 10, 15', v2.convertObjectCoordinatesToComplexNumbers(coordinates2));
+
+
+}
+
+function testConvertObjectComplexNumbersToCoordinates() {
+
+    let v = new Convert();
+    const coordinates = new Coordinates(0, 0);
+
+
+    console.log('Deve ser 0, 0', v.convertObjectCoordinatesToComplexNumbers(coordinates));
+
+    const coordinates2 = new Coordinates(10, 15);
+    let v2 = new Convert(coordinates2);
+
+    console.log('Deve ser 10, 15', v2.convertObjectCoordinatesToComplexNumbers(coordinates2));
+
+
+}
 testGetComplex();
-testgetImageOfGivenDomainNumber();
+testGetImageOfGivenDomainNumber();
+testConvertconvertObjectCoordinatesToComplexNumbers();
