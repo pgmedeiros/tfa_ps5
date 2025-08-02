@@ -1,17 +1,4 @@
-function setup() {
-  createCanvas(710, 400);
+import CanvasInDiv from "./CanvasInDiv.js";
 
-  background(0);
-
-  strokeWeight(5);
-
-  colorMode(HSB);
-
-}
-
-function mouseDragged() {
-  let lineHue = mouseX - mouseY;
-  stroke('white');
-  stroke(lineHue, 90, 90);
-  line(pmouseX, pmouseY, mouseX, mouseY);
-}
+const img = new CanvasInDiv(400, 400, 'two', 0, 0);
+new CanvasInDiv(400, 400, 'one', img, 0);
