@@ -1,29 +1,29 @@
 export default class Canvas {
 
-    constructor(div) {
+    constructor(div, p5_instance) {
         this.subs = []
         this.div = div;
+        this.p5_instance = p5_instance;
     }
 
-    background(p5, color) {
-        p5.background(color)
+    background(color) {
+        this.p5_instance.background(color)
     }
 
-    draw(p5, data) {
-        p5.line(data.beforeX, data.beforeY, data.x, data.y);
-        p5.point(100, 100);
+    draw(data) {
+        this.p5_instance.line(data.beforeX, data.beforeY, data.x, data.y);
     }
 
     addSub(sub) {
         this.subs.push(sub);
     }
 
-    notify(p5, data) {
-        this.update(p5, data);
+    notify(data) {
+        this.update(data);
     }
 
-    update(p5, data) {
-        this.subs[0].draw(p5, data);
+    update(data) {
+        this.subs[0].draw(data);
     }
 
 }
