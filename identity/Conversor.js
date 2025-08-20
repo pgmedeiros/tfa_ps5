@@ -1,4 +1,3 @@
-import {complex} from "mathjs";
 import Coordinates from "./Coordinates.js";
 
 export default class Convert {
@@ -8,7 +7,7 @@ export default class Convert {
         const realNumber = cord.x;
         const imgNumber = cord.y;
 
-        return complex(realNumber, imgNumber);
+        return math.complex(realNumber, imgNumber);
     }
 
     convertObjectComplexNumbersToCoordinates(complex) {

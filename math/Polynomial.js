@@ -1,5 +1,3 @@
-import { pow, multiply, complex, polynomialRoot, sum} from 'mathjs'
-
 export default class Polynomial {
 
     constructor(...terms) {
@@ -7,14 +5,14 @@ export default class Polynomial {
     }
 
     getComplex(real, imaginary) {
-        return complex(real, imaginary);
+        return math.complex(real, imaginary);
     }
 
     getImageOfGivenDomainNumber(terms){
-        let acummulator = complex();
+        let acummulator = math.complex();
 
         terms.forEach(term => {
-            acummulator = sum(acummulator, multiply(pow(term.number, term.degree), term.coeff));
+            acummulator = math.sum(acummulator, multiply(pow(term.number, term.degree), term.coeff));
         });
 
         return acummulator;
