@@ -1,7 +1,7 @@
 import Polynomial from "../math/Polynomial.js";
 import Term from "../math/Term.js";
 import Coordinates from "../identity/Coordinates.js";
-import Convert from "../identity/Conversor.js";
+import Convert from "../identity/Convert.js";
 
 // testes polynomial
 

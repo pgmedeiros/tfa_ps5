@@ -1,5 +1,3 @@
-import Coordinates from "./Coordinates.js";
-
 export default class Convert {
 
     convertObjectCoordinatesToComplexNumbers(coordinates) {
@@ -11,9 +9,12 @@ export default class Convert {
     }
 
     convertObjectComplexNumbersToCoordinates(complex) {
-        const coordX = complex.x;
-        const coordY = complex.y;
+        const coordX = complex.re;
+        const coordY = complex.im;
 
-        return Coordinates(coordX, coordY);
+        return {
+            x : coordX,
+            y : coordY
+        }
     }
 }

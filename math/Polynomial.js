@@ -11,8 +11,8 @@ export default class Polynomial {
     getImageOfGivenDomainNumber(terms){
         let acummulator = math.complex();
 
-        terms.forEach(term => {
-            acummulator = math.sum(acummulator, multiply(pow(term.number, term.degree), term.coeff));
+        this.terms.forEach(term => {
+            acummulator = math.sum(acummulator, math.multiply(math.pow(term.number, term.degree), term.coeff));
         });
 
         return acummulator;
