@@ -1,8 +1,6 @@
 import Canvas from "./Canvas.js";
 import Convert from "./identity/Convert.js";
 import Coordinates from "./identity/Coordinates.js";
-import Polynomial_ from "./math/Polynomial_.js";
-import Term from "./math/Term.js";
 
 export default class CanvasInDiv {
     constructor (width, height, div, color, sub) {
@@ -31,24 +29,45 @@ export default class CanvasInDiv {
 
                             const convert = new Convert();
 
+                            // recebe coordenadas do dominio
+
                             const domainOriginCoordinates = new Coordinates(domainPositionData.beforeX, domainPositionData.beforeY);
                             const domainActualCoordinates = new Coordinates(domainPositionData.x, domainPositionData.y);
 
+                            // converte essas coordenadas para numeros complexos.
                             const domainOriginComplexNumberOfCoordinates = convert.convertObjectCoordinatesToComplexNumbers(domainOriginCoordinates);
                             const domainActualComplexNumberOfCoordinates = convert.convertObjectCoordinatesToComplexNumbers(domainActualCoordinates);
 
+                            /** constroi polinomio para calcular a imagem
                             const domainOriginPolyFirstTerm = new Term(1, 1, domainOriginComplexNumberOfCoordinates);
                             const domainOriginPolySecondTerm = new Term(1, 1, domainOriginComplexNumberOfCoordinates);
                             const domainActualPolyFirstTerm = new Term(1, 1, domainActualComplexNumberOfCoordinates);
                             const domainActualPolySecondTerm = new Term(1, 1, domainActualComplexNumberOfCoordinates);
 
+
+                            faz calculo da imagem
+
                             const imgOriginComplexNumber = new Polynomial_(domainOriginPolyFirstTerm, domainOriginPolySecondTerm).getImageOfGivenDomainNumber();
                             const imgActualComplexNumber = new Polynomial_(domainActualPolyFirstTerm, domainActualPolySecondTerm).getImageOfGivenDomainNumber();
 
+                            */
+
+                            // converter objetos complexos para tipo complexo da lib
+
+                            const TdomainOriginComplexNumberOfCoordinates = new Complex(domainOriginComplexNumberOfCoordinates.re, domainOriginComplexNumberOfCoordinates.im);
+                            const TdomainActualComplexNumberOfCoordinates = new Complex(domainActualComplexNumberOfCoordinates.re, domainActualComplexNumberOfCoordinates.im);
+
+                            Polynomial.setField("C");
+                            const poly = new Polynomial('x');
+
+                            const imgOriginComplexNumber = poly.eval(TdomainOriginComplexNumberOfCoordinates);
+                            const imgActualComplexNumber = poly.eval(TdomainActualComplexNumberOfCoordinates);
+
+                            // converte numeros encontrados para coordenadas
                             const imgOriginCoordinatesOfComplexNumber = convert.convertObjectComplexNumbersToCoordinates(imgOriginComplexNumber);
                             const imgActualCoordinatesOfComplexNumber = convert.convertObjectComplexNumbersToCoordinates(imgActualComplexNumber);
 
-
+                            // monta objeto para ser printado
                             let imagePositionData = {
                                 'beforeX': imgOriginCoordinatesOfComplexNumber.x,
                                 'beforeY': imgOriginCoordinatesOfComplexNumber.y,
