@@ -6,3 +6,16 @@ canvas {
   display: block;
 }
 
+.display {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center;    /* Centraliza verticalmente */
+}
+
+.canva {
+  width: 400px;
+  height: 400px;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  text-align: center;
+}
