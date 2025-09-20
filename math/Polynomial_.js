@@ -1,4 +1,4 @@
-export default class Polynomial {
+export default class Polynomial_ {
 
     constructor(...terms) {
         this.terms = terms;

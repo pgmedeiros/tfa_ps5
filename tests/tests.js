@@ -1,4 +1,4 @@
-import Polynomial from "../math/Polynomial.js";
+import Polynomial_ from "../math/Polynomial_.js";
 import Term from "../math/Term.js";
 import Coordinates from "../identity/Coordinates.js";
 import Convert from "../identity/Convert.js";
@@ -6,13 +6,13 @@ import Convert from "../identity/Convert.js";
 // testes polynomial
 
 function testGetComplex() {
-    let p = new Polynomial();
+    let p = new Polynomial_();
 
     console.log(p.getComplex(1,2));
 }
 
 function testGetImageOfGivenDomainNumber() {
-    let p = new Polynomial();
+    let p = new Polynomial_();
 
     const c1= p.getComplex(0,0);
     const term1 = new Term(0, 0, c1);
@@ -21,7 +21,7 @@ function testGetImageOfGivenDomainNumber() {
     const v = p.getImageOfGivenDomainNumber([term1, term2]);
     console.log('Deve ser igual a zero: ', v);
 
-    let p2 = new Polynomial();
+    let p2 = new Polynomial_();
 
     const d1= p2.getComplex(2,1);
     const cterm1 = new Term(4, 0, d1);

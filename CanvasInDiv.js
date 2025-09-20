@@ -1,7 +1,7 @@
 import Canvas from "./Canvas.js";
 import Convert from "./identity/Convert.js";
 import Coordinates from "./identity/Coordinates.js";
-import Polynomial from "./math/Polynomial.js";
+import Polynomial_ from "./math/Polynomial_.js";
 import Term from "./math/Term.js";
 
 export default class CanvasInDiv {
@@ -42,8 +42,8 @@ export default class CanvasInDiv {
                             const domainActualPolyFirstTerm = new Term(1, 1, domainActualComplexNumberOfCoordinates);
                             const domainActualPolySecondTerm = new Term(1, 1, domainActualComplexNumberOfCoordinates);
 
-                            const imgOriginComplexNumber = new Polynomial(domainOriginPolyFirstTerm, domainOriginPolySecondTerm).getImageOfGivenDomainNumber();
-                            const imgActualComplexNumber = new Polynomial(domainActualPolyFirstTerm, domainActualPolySecondTerm).getImageOfGivenDomainNumber();
+                            const imgOriginComplexNumber = new Polynomial_(domainOriginPolyFirstTerm, domainOriginPolySecondTerm).getImageOfGivenDomainNumber();
+                            const imgActualComplexNumber = new Polynomial_(domainActualPolyFirstTerm, domainActualPolySecondTerm).getImageOfGivenDomainNumber();
 
                             const imgOriginCoordinatesOfComplexNumber = convert.convertObjectComplexNumbersToCoordinates(imgOriginComplexNumber);
                             const imgActualCoordinatesOfComplexNumber = convert.convertObjectComplexNumbersToCoordinates(imgActualComplexNumber);
