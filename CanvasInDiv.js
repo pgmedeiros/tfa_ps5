@@ -31,8 +31,11 @@ export default class CanvasInDiv {
 
                             // recebe coordenadas do dominio
 
-                            const domainOriginCoordinates = new Coordinates(domainPositionData.beforeX, domainPositionData.beforeY);
-                            const domainActualCoordinates = new Coordinates(domainPositionData.x, domainPositionData.y);
+
+                            let domainOriginCoordinates = new Coordinates(domainPositionData.beforeX, domainPositionData.beforeY);
+                            let domainActualCoordinates = new Coordinates(domainPositionData.x, domainPositionData.y);
+
+
 
                             // converte essas coordenadas para numeros complexos.
                             const domainOriginComplexNumberOfCoordinates = convert.convertObjectCoordinatesToComplexNumbers(domainOriginCoordinates);
@@ -58,7 +61,7 @@ export default class CanvasInDiv {
                             const TdomainActualComplexNumberOfCoordinates = new Complex(domainActualComplexNumberOfCoordinates.re, domainActualComplexNumberOfCoordinates.im);
 
                             Polynomial.setField("C");
-                            const poly = new Polynomial('x');
+                            const poly = new Polynomial('x^2+x+1');
 
                             const imgOriginComplexNumber = poly.eval(TdomainOriginComplexNumberOfCoordinates);
                             const imgActualComplexNumber = poly.eval(TdomainActualComplexNumberOfCoordinates);
