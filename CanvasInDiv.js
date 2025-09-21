@@ -6,6 +6,8 @@ export default class CanvasInDiv {
         const self = this;
         self.canva = null;
         self.points = [];
+        self.slider_line_color = null;
+        self.slider_line_width = null;
         this.p5_instance = new p5(
                 function (p5) {
                     p5.setup = function () {
@@ -15,6 +17,11 @@ export default class CanvasInDiv {
                            self.canva.addSub(sub[0].canva);
                         }
                         self.canva.background(color);
+                        self.slider_line_color_one = p5.createSlider(0, 255, 255);
+                        self.slider_line_color_two = p5.createSlider(0, 255, 255);
+                        self.slider_line_color_three = p5.createSlider(0, 255, 255);
+
+                        self.slider_line_width = p5.createSlider(1, 5, 3)
                     };
                     // entender melhor como essa função funciona.
                     p5.draw = function () {
@@ -28,8 +35,8 @@ export default class CanvasInDiv {
                                 self.points.push(point);
                                 sub[0].points.push(imgPoint);
                             }
-                            p5.stroke(255);
-                            p5.strokeWeight(5);
+                            p5.stroke(self.slider_line_color_one.value(), self.slider_line_color_two.value(), self.slider_line_color_three.value());
+                            p5.strokeWeight(self.slider_line_width.value());
                             p5.strokeJoin(p5.ROUND);
                             p5.noFill();
                             p5.beginShape();
@@ -40,8 +47,8 @@ export default class CanvasInDiv {
                             p5.endShape()
                         } else {
                             // imagem
-                            p5.stroke(255);
-                            p5.strokeWeight(5);
+                            p5.stroke(self.slider_line_color_one.value(), self.slider_line_color_two.value(), self.slider_line_color_three.value());
+                            p5.strokeWeight(self.slider_line_width.value());
                             p5.strokeJoin(p5.ROUND);
                             p5.noFill();
                             p5.beginShape();
