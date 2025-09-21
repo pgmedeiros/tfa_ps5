@@ -1,6 +1,5 @@
 import Canvas from "./Canvas.js";
-import Convert from "./identity/Convert.js";
-import Coordinates from "./identity/Coordinates.js";
+import Polynomial_ from "./math/Polynomial_.js";
 
 export default class CanvasInDiv {
     constructor (width, height, div, color, sub) {
@@ -19,12 +18,15 @@ export default class CanvasInDiv {
                     };
                     // entender melhor como essa função funciona.
                     p5.draw = function () {
+                        const polyy = new Polynomial_()
                         // dominio
                         if (div.includes('one')) {
                             if (p5.pmouseX !== p5.mouseX && p5.pmouseX !== p5.mouseX) {
                                 let point = p5.createVector(p5.mouseX, p5.mouseY);
+                                let img_p = polyy.getImage(p5.mouseX, p5.mouseY);
+                                let imgPoint = p5.createVector(img_p.x, img_p.y);
                                 self.points.push(point);
-                                sub[0].points.push(point)
+                                sub[0].points.push(imgPoint);
                             }
                             p5.stroke(255);
                             p5.strokeWeight(5);
@@ -49,78 +51,6 @@ export default class CanvasInDiv {
                             }
                             p5.endShape()
 
-                        }
-                    }
-
-                    p5.mouseDragged = function (event) {
-                        if(event.target === p5.canvas) {
-                            let lineHue = p5.mouseX - p5.mouseY;
-
-                            let domainPositionData = {
-                                'beforeX': p5.pmouseX,
-                                'beforeY': p5.pmouseY,
-                                'x': p5.mouseX,
-                                'y':  p5.mouseY,
-                            }
-
-                            const convert = new Convert();
-
-                            // recebe coordenadas do dominio
-
-
-                            let domainOriginCoordinates = new Coordinates(domainPositionData.beforeX, domainPositionData.beforeY);
-                            let domainActualCoordinates = new Coordinates(domainPositionData.x, domainPositionData.y);
-
-
-
-                            // converte essas coordenadas para numeros complexos.
-                            const domainOriginComplexNumberOfCoordinates = convert.convertObjectCoordinatesToComplexNumbers(domainOriginCoordinates);
-                            const domainActualComplexNumberOfCoordinates = convert.convertObjectCoordinatesToComplexNumbers(domainActualCoordinates);
-
-                            /** constroi polinomio para calcular a imagem
-                            const domainOriginPolyFirstTerm = new Term(1, 1, domainOriginComplexNumberOfCoordinates);
-                            const domainOriginPolySecondTerm = new Term(1, 1, domainOriginComplexNumberOfCoordinates);
-                            const domainActualPolyFirstTerm = new Term(1, 1, domainActualComplexNumberOfCoordinates);
-                            const domainActualPolySecondTerm = new Term(1, 1, domainActualComplexNumberOfCoordinates);
-
-
-                            faz calculo da imagem
-
-                            const imgOriginComplexNumber = new Polynomial_(domainOriginPolyFirstTerm, domainOriginPolySecondTerm).getImageOfGivenDomainNumber();
-                            const imgActualComplexNumber = new Polynomial_(domainActualPolyFirstTerm, domainActualPolySecondTerm).getImageOfGivenDomainNumber();
-
-                            */
-
-                            // converter objetos complexos para tipo complexo da lib
-
-                            const TdomainOriginComplexNumberOfCoordinates = new Complex(domainOriginComplexNumberOfCoordinates.re, domainOriginComplexNumberOfCoordinates.im);
-                            const TdomainActualComplexNumberOfCoordinates = new Complex(domainActualComplexNumberOfCoordinates.re, domainActualComplexNumberOfCoordinates.im);
-
-                            Polynomial.setField("C");
-                            const poly = new Polynomial('x^2+x+1');
-
-                            const imgOriginComplexNumber = poly.eval(TdomainOriginComplexNumberOfCoordinates);
-                            const imgActualComplexNumber = poly.eval(TdomainActualComplexNumberOfCoordinates);
-
-                            // converte numeros encontrados para coordenadas
-                            const imgOriginCoordinatesOfComplexNumber = convert.convertObjectComplexNumbersToCoordinates(imgOriginComplexNumber);
-                            const imgActualCoordinatesOfComplexNumber = convert.convertObjectComplexNumbersToCoordinates(imgActualComplexNumber);
-
-                            // monta objeto para ser printado
-                            let imagePositionData = {
-                                'beforeX': imgOriginCoordinatesOfComplexNumber.x,
-                                'beforeY': imgOriginCoordinatesOfComplexNumber.y,
-                                'x': imgActualCoordinatesOfComplexNumber.x,
-                                'y': imgActualCoordinatesOfComplexNumber.y
-                            }
-
-
-                            p5.stroke('white');
-                            p5.stroke(lineHue, 90, 90);
-                            //self.canva.draw(domainPositionData);
-                            if(div.includes('one')) {
-                                //self.canva.notify(imagePositionData);
-                            }
                         }
                     }
                 }

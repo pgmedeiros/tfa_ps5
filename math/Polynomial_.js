@@ -1,3 +1,6 @@
+import Convert from "../identity/Convert.js";
+import Coordinates from "../identity/Coordinates.js";
+
 export default class Polynomial_ {
 
     constructor(...terms) {
@@ -23,5 +26,35 @@ export default class Polynomial_ {
         polynomialRoot(terms);
     }
 
+    getImage(x, y) {
 
+        const convert = new Convert();
+
+        // recebe coordenadas do dominio
+
+
+        let domainOriginCoordinates = new Coordinates(x, y);
+
+        // converte essas coordenadas para numeros complexos.
+        const domainOriginComplexNumberOfCoordinates = convert.convertObjectCoordinatesToComplexNumbers(domainOriginCoordinates);
+
+
+        // converter objetos complexos para tipo complexo da lib
+
+        const TdomainOriginComplexNumberOfCoordinates = new Complex(domainOriginComplexNumberOfCoordinates.re, domainOriginComplexNumberOfCoordinates.im);
+
+        Polynomial.setField("C");
+        const poly = new Polynomial('x^2+x+1');
+
+        const imgOriginComplexNumber = poly.eval(TdomainOriginComplexNumberOfCoordinates);
+
+        // converte numeros encontrados para coordenadas
+        const imgOriginCoordinatesOfComplexNumber = convert.convertObjectComplexNumbersToCoordinates(imgOriginComplexNumber);
+
+        // monta objeto para ser printado
+        return {
+            'x': imgOriginCoordinatesOfComplexNumber.x,
+            'y': imgOriginCoordinatesOfComplexNumber.y,
+        };
+    }
 }
