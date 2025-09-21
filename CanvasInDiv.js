@@ -6,6 +6,7 @@ export default class CanvasInDiv {
     constructor (width, height, div, color, sub) {
         const self = this;
         self.canva = null;
+        self.points = [];
         this.p5_instance = new p5(
                 function (p5) {
                     p5.setup = function () {
@@ -16,6 +17,41 @@ export default class CanvasInDiv {
                         }
                         self.canva.background(color);
                     };
+                    // entender melhor como essa função funciona.
+                    p5.draw = function () {
+                        // dominio
+                        if (div.includes('one')) {
+                            if (p5.pmouseX !== p5.mouseX && p5.pmouseX !== p5.mouseX) {
+                                let point = p5.createVector(p5.mouseX, p5.mouseY);
+                                self.points.push(point);
+                                sub[0].points.push(point)
+                            }
+                            p5.stroke(255);
+                            p5.strokeWeight(5);
+                            p5.strokeJoin(p5.ROUND);
+                            p5.noFill();
+                            p5.beginShape();
+                            for(let i = 0; i < self.points.length; i++) {
+                                let pt = self.points[i];
+                                p5.curveVertex(pt.x, pt.y);
+                            }
+                            p5.endShape()
+                        } else {
+                            // imagem
+                            p5.stroke(255);
+                            p5.strokeWeight(5);
+                            p5.strokeJoin(p5.ROUND);
+                            p5.noFill();
+                            p5.beginShape();
+                            for(let i = 0; i < self.points.length; i++) {
+                                let pt = self.points[i];
+                                p5.curveVertex(pt.x, pt.y);
+                            }
+                            p5.endShape()
+
+                        }
+                    }
+
                     p5.mouseDragged = function (event) {
                         if(event.target === p5.canvas) {
                             let lineHue = p5.mouseX - p5.mouseY;
@@ -81,9 +117,9 @@ export default class CanvasInDiv {
 
                             p5.stroke('white');
                             p5.stroke(lineHue, 90, 90);
-                            self.canva.draw(domainPositionData);
+                            //self.canva.draw(domainPositionData);
                             if(div.includes('one')) {
-                                self.canva.notify(imagePositionData);
+                                //self.canva.notify(imagePositionData);
                             }
                         }
                     }
