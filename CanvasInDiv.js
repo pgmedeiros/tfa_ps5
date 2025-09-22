@@ -5,18 +5,23 @@ export default class CanvasInDiv {
     constructor (width, height, div, color, sub) {
         const self = this;
         self.canva = null;
+        self.color = color;
         self.points = [];
         self.lines = [];
         self.current_line = [];
         self.dragged = false;
         self.slider_line_color = null;
         self.slider_line_width = null;
+        self.poly_user_input = 'x';
+        let input = null;
+        let button = null;
+
         this.p5_instance = new p5(
                 function (p5) {
                     p5.setup = function () {
                         p5.createCanvas(400, 400);
                         self.canva = new Canvas(div, p5);
-                        if(div.includes('one')) {
+                        if(self.canva.div.includes('one')) {
                            self.canva.addSub(sub[0].canva);
                         }
                         self.canva.background(color);
@@ -25,15 +30,27 @@ export default class CanvasInDiv {
                         self.slider_line_color_three = p5.createSlider(0, 255, 255);
 
                         self.slider_line_width = p5.createSlider(1, 5, 3)
+
+
+
+                        if (self.canva.div.includes('one')) {
+                            input = p5.createInput('x');
+                            button = p5.createButton('Enviar');
+                            button.mousePressed(() => {
+                                self.poly_user_input = input.value();
+                                self.canva.background(self.color);
+                                sub[0].canva.background(sub[0].color);
+                            });
+                        }
                     };
                     // entender melhor como essa função funciona.
                     p5.draw = function () {
                         const polyy = new Polynomial_()
                         // dominio
-                        if (div.includes('one')) {
+                        if (self.canva.div.includes('one')) {
                             if (self.dragged === true && p5.pmouseX !== p5.mouseX && p5.pmouseX !== p5.mouseX) {
                                 let point = p5.createVector(p5.mouseX, p5.mouseY);
-                                let img_p = polyy.getImage(p5.mouseX, p5.mouseY);
+                                let img_p = polyy.getImage(p5.mouseX, p5.mouseY, self.poly_user_input);
                                 let imgPoint = p5.createVector(img_p.x, img_p.y);
                                 self.current_line.push(point);
                                 sub[0].current_line.push(imgPoint);
@@ -75,5 +92,4 @@ export default class CanvasInDiv {
                 }
                 ,div);
     }
-
 }

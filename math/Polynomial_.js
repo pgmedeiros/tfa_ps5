@@ -26,7 +26,7 @@ export default class Polynomial_ {
         polynomialRoot(terms);
     }
 
-    getImage(x, y) {
+    getImage(x, y, poly_expression) {
 
         const convert = new Convert();
 
@@ -44,7 +44,7 @@ export default class Polynomial_ {
         const TdomainOriginComplexNumberOfCoordinates = new Complex(domainOriginComplexNumberOfCoordinates.re, domainOriginComplexNumberOfCoordinates.im);
 
         Polynomial.setField("C");
-        const poly = new Polynomial('x^2+x+1');
+        const poly = new Polynomial(poly_expression);
 
         const imgOriginComplexNumber = poly.eval(TdomainOriginComplexNumberOfCoordinates);
 
