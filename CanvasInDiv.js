@@ -6,6 +6,9 @@ export default class CanvasInDiv {
         const self = this;
         self.canva = null;
         self.points = [];
+        self.lines = [];
+        self.current_line = [];
+        self.dragged = false;
         self.slider_line_color = null;
         self.slider_line_width = null;
         this.p5_instance = new p5(
@@ -28,20 +31,20 @@ export default class CanvasInDiv {
                         const polyy = new Polynomial_()
                         // dominio
                         if (div.includes('one')) {
-                            if (p5.pmouseX !== p5.mouseX && p5.pmouseX !== p5.mouseX) {
+                            if (self.dragged === true && p5.pmouseX !== p5.mouseX && p5.pmouseX !== p5.mouseX) {
                                 let point = p5.createVector(p5.mouseX, p5.mouseY);
                                 let img_p = polyy.getImage(p5.mouseX, p5.mouseY);
                                 let imgPoint = p5.createVector(img_p.x, img_p.y);
-                                self.points.push(point);
-                                sub[0].points.push(imgPoint);
+                                self.current_line.push(point);
+                                sub[0].current_line.push(imgPoint);
                             }
                             p5.stroke(self.slider_line_color_one.value(), self.slider_line_color_two.value(), self.slider_line_color_three.value());
                             p5.strokeWeight(self.slider_line_width.value());
                             p5.strokeJoin(p5.ROUND);
                             p5.noFill();
                             p5.beginShape();
-                            for(let i = 0; i < self.points.length; i++) {
-                                let pt = self.points[i];
+                            for(let i = 0; i < self.current_line.length; i++) {
+                                let pt = self.current_line[i];
                                 p5.curveVertex(pt.x, pt.y);
                             }
                             p5.endShape()
@@ -52,13 +55,22 @@ export default class CanvasInDiv {
                             p5.strokeJoin(p5.ROUND);
                             p5.noFill();
                             p5.beginShape();
-                            for(let i = 0; i < self.points.length; i++) {
-                                let pt = self.points[i];
+                            for(let i = 0; i < self.current_line.length; i++) {
+                                let pt = self.current_line[i];
                                 p5.curveVertex(pt.x, pt.y);
                             }
                             p5.endShape()
 
                         }
+                    }
+
+                    p5.mouseDragged = function () {
+                        self.dragged = true;
+                    }
+
+                    p5.mouseReleased = function () {
+                        self.dragged = false;
+                        self.current_line = [];
                     }
                 }
                 ,div);
