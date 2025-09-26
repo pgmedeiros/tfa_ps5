@@ -16,6 +16,7 @@ export default class CanvasInDiv {
         self.poly_user_input = 'x';
         let input = null;
         let button = null;
+        self.polyy = new Polynomial_()
 
         this.p5_instance = new p5(
                 function (p5) {
@@ -46,10 +47,9 @@ export default class CanvasInDiv {
                     };
 
                     p5.draw = function () {
-                        const polyy = new Polynomial_()
                         self.canva.background(self.color);
                         canva_config(p5, self.slider_scale);
-                        mouse_movement(p5, self, sub, polyy);
+                        mouse_movement(p5, self, sub, self.polyy);
                         canva_design(p5, self);
                         print_lines(self.lines, p5);
                         print_line(self.current_line, p5);
