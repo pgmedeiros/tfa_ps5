@@ -19,7 +19,7 @@ export function print_lines(lines, p5) {
 export function canva_config(p5, scale) {
     p5.translate(200, 200);
     p5.scale(scale.value() / 10);
-    p5.circle(0, 0, 100);
+    //p5.circle(0, 0, 100);
 }
 
 export function mouse_movement(p5, self, sub, polyy) {
