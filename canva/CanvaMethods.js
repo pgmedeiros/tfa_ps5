@@ -24,6 +24,9 @@ export function canva_config(p5, scale) {
 
 export function mouse_movement(p5, self, sub, polyy) {
     if (self.canva.div.includes('one')) {
+        if(guard(p5)) {
+            return;
+        }
         if (self.dragged === true && p5.pmouseX !== p5.mouseX && p5.pmouseX !== p5.mouseX) {
             let point = p5.createVector(p5.mouseX - 200, p5.mouseY - 200);
             let img_p = polyy.getImage(p5.mouseX - 200, p5.mouseY - 200, self.poly_user_input);
@@ -62,5 +65,11 @@ export function create_polynomial_button(p5, self) {
 export function create_subs(self) {
     if(self.canva.div.includes('one')) {
         self.canva.addSub(self.sub[0].canva);
+    }
+}
+
+function guard(p5) {
+    if (p5.pmouseX < 0 || p5.pmouseX >= p5.width || p5.pmouseY < 0 || p5.pmouseY >= p5.height) {
+        return true;
     }
 }
