@@ -40,3 +40,27 @@ export function canva_design(p5, self) {
     p5.strokeJoin(p5.ROUND);
     p5.noFill();
 }
+
+export function create_sliders(p5, self) {
+    self.slider_line_color_one = p5.createSlider(0, 255, 255);
+    self.slider_line_color_two = p5.createSlider(0, 255, 255);
+    self.slider_line_color_three = p5.createSlider(0, 255, 255);
+    self.slider_scale = p5.createSlider(5, 20, 10);
+    self.slider_line_width = p5.createSlider(1, 5, 3)
+}
+
+export function create_polynomial_button(p5, self) {
+    if (self.canva.div.includes('one')) {
+        self.input = p5.createInput('x');
+        self.button = p5.createButton('Enviar');
+        self.button.mousePressed(() => {
+            self.poly_user_input = self.input.value();
+        });
+    }
+}
+
+export function create_subs(self) {
+    if(self.canva.div.includes('one')) {
+        self.canva.addSub(self.sub[0].canva);
+    }
+}
