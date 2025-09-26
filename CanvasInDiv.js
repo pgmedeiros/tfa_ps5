@@ -44,7 +44,7 @@ export default class CanvasInDiv {
                             });
                         }
                     };
-                    // entender melhor como essa função funciona.
+
                     p5.draw = function () {
                         const polyy = new Polynomial_()
                         self.canva.background(self.color);
