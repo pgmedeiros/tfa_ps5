@@ -1,6 +1,6 @@
 import Canvas from "./Canvas.js";
 import Polynomial_ from "./math/Polynomial_.js";
-import {canva_config, print_line, print_lines} from "./canva/CanvaMethods.js";
+import {canva_config, canva_design, mouse_movement, print_line, print_lines} from "./canva/CanvaMethods.js";
 export default class CanvasInDiv {
     constructor (width, height, div, color, sub) {
         const self = this;
@@ -47,33 +47,12 @@ export default class CanvasInDiv {
                     // entender melhor como essa função funciona.
                     p5.draw = function () {
                         const polyy = new Polynomial_()
-                        // dominio
                         self.canva.background(self.color);
-                        if (self.canva.div.includes('one')) {
-                            canva_config(p5, self.slider_scale);
-                            if (self.dragged === true && p5.pmouseX !== p5.mouseX && p5.pmouseX !== p5.mouseX) {
-                                let point = p5.createVector(p5.mouseX - 200, p5.mouseY - 200);
-                                let img_p = polyy.getImage( p5.mouseX - 200, p5.mouseY - 200, self.poly_user_input);
-                                let imgPoint = p5.createVector(img_p.x, img_p.y);
-                                self.current_line.push(point);
-                                sub[0].current_line.push(imgPoint);
-                            }
-                            p5.stroke(self.slider_line_color_one.value(), self.slider_line_color_two.value(), self.slider_line_color_three.value());
-                            p5.strokeWeight(self.slider_line_width.value());
-                            p5.strokeJoin(p5.ROUND);
-                            p5.noFill();
-                            print_lines(self.lines, p5);
-                            print_line(self.current_line, p5);
-                        } else {
-                            // imagem
-                            canva_config(p5, self.slider_scale);
-                            p5.stroke(self.slider_line_color_one.value(), self.slider_line_color_two.value(), self.slider_line_color_three.value());
-                            p5.strokeWeight(self.slider_line_width.value());
-                            p5.strokeJoin(p5.ROUND);
-                            p5.noFill();
-                            print_lines(self.lines, p5);
-                            print_line(self.current_line, p5);
-                        }
+                        canva_config(p5, self.slider_scale);
+                        mouse_movement(p5, self, sub, polyy);
+                        canva_design(p5, self);
+                        print_lines(self.lines, p5);
+                        print_line(self.current_line, p5);
                     }
 
                     p5.mouseDragged = function () {

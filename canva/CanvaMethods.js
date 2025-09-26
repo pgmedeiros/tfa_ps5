@@ -21,3 +21,22 @@ export function canva_config(p5, scale) {
     p5.scale(scale.value() / 10);
     p5.circle(0, 0, 100);
 }
+
+export function mouse_movement(p5, self, sub, polyy) {
+    if (self.canva.div.includes('one')) {
+        if (self.dragged === true && p5.pmouseX !== p5.mouseX && p5.pmouseX !== p5.mouseX) {
+            let point = p5.createVector(p5.mouseX - 200, p5.mouseY - 200);
+            let img_p = polyy.getImage(p5.mouseX - 200, p5.mouseY - 200, self.poly_user_input);
+            let imgPoint = p5.createVector(img_p.x, img_p.y);
+            self.current_line.push(point);
+            sub[0].current_line.push(imgPoint);
+        }
+    }
+}
+
+export function canva_design(p5, self) {
+    p5.stroke(self.slider_line_color_one.value(), self.slider_line_color_two.value(), self.slider_line_color_three.value());
+    p5.strokeWeight(self.slider_line_width.value());
+    p5.strokeJoin(p5.ROUND);
+    p5.noFill();
+}
