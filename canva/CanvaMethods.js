@@ -58,13 +58,19 @@ export function create_polynomial_button(p5, self) {
         self.button = p5.createButton('Enviar');
         self.button.mousePressed(() => {
             self.poly_user_input = self.input.value();
+            self.lines = [];
+            self.sub.forEach(canva => {
+                canva.lines = [];
+            })
         });
     }
 }
 
 export function create_subs(self) {
     if(self.canva.div.includes('one')) {
-        self.canva.addSub(self.sub[0].canva);
+        self.sub.forEach(canva => {
+            self.canva.addSub(canva);
+        })
     }
 }
 
