@@ -1,6 +1,6 @@
 import Canvas from "./Canvas.js";
 import Polynomial_ from "./math/Polynomial_.js";
-
+import {canva_config, print_line, print_lines} from "./canva/CanvaMethods.js";
 export default class CanvasInDiv {
     constructor (width, height, div, color, sub) {
         const self = this;
@@ -34,8 +34,6 @@ export default class CanvasInDiv {
 
                         self.slider_line_width = p5.createSlider(1, 5, 3)
 
-
-
                         if (self.canva.div.includes('one')) {
                             input = p5.createInput('x');
                             button = p5.createButton('Enviar');
@@ -51,11 +49,8 @@ export default class CanvasInDiv {
                         const polyy = new Polynomial_()
                         // dominio
                         self.canva.background(self.color);
-
                         if (self.canva.div.includes('one')) {
-                            p5.translate(200, 200);
-                            p5.scale(self.slider_scale.value() / 10);
-                            p5.circle(0, 0, 100);
+                            canva_config(p5, self.slider_scale);
                             if (self.dragged === true && p5.pmouseX !== p5.mouseX && p5.pmouseX !== p5.mouseX) {
                                 let point = p5.createVector(p5.mouseX - 200, p5.mouseY - 200);
                                 let img_p = polyy.getImage( p5.mouseX - 200, p5.mouseY - 200, self.poly_user_input);
@@ -68,34 +63,24 @@ export default class CanvasInDiv {
                             p5.strokeJoin(p5.ROUND);
                             p5.noFill();
                             if(self.lines.length !== 0) {
-                                for(let i = 0; i < self.lines.length; i++) { // entender melhor o motivo de não poder remover -1
-                                    p5.beginShape();
-                                        for(let j = 0; j < self.lines[i].length; j++) {
-                                            let pt = self.lines[i][j];
-                                            p5.curveVertex(pt.x, pt.y);
-                                        }
-                                    p5.endShape()
-                                }
+                                print_lines(self.lines, p5);
                             }
                             p5.beginShape();
-                            for(let i = 0; i < self.current_line.length; i++) {
-                                let pt = self.current_line[i];
-                                p5.curveVertex(pt.x, pt.y);
-                            }
+                            print_line(self.current_line, p5);
                             p5.endShape()
                         } else {
                             // imagem
+                            canva_config(p5, self.slider_scale);
                             p5.stroke(self.slider_line_color_one.value(), self.slider_line_color_two.value(), self.slider_line_color_three.value());
                             p5.strokeWeight(self.slider_line_width.value());
                             p5.strokeJoin(p5.ROUND);
                             p5.noFill();
-                            p5.beginShape();
-                            for(let i = 0; i < self.current_line.length; i++) {
-                                let pt = self.current_line[i];
-                                p5.curveVertex(pt.x, pt.y);
+                            if(self.lines.length !== 0) {
+                                print_lines(self.lines, p5);
                             }
+                            p5.beginShape();
+                            print_line(self.current_line, p5);
                             p5.endShape()
-
                         }
                     }
 
