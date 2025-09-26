@@ -1,19 +1,19 @@
-export function print_line(points, p5) {
-    for(let i = 0; i < points.length; i++) {
-        let pt = points[i];
-        p5.curveVertex(pt.x, pt.y);
-    }
+export function print_line(line, p5) {
+    p5.beginShape();
+    line.forEach(point => {
+        p5.curveVertex(point.x, point.y);
+    })
+    p5.endShape()
 }
 
 export function print_lines(lines, p5) {
-    for(let i = 0; i < lines.length; i++) {
+    lines.forEach(line => {
         p5.beginShape();
-        for(let j = 0; j < lines[i].length; j++) {
-            let pt = lines[i][j];
-            p5.curveVertex(pt.x, pt.y);
-        }
+        line.forEach(point => {
+            p5.curveVertex(point.x, point.y);
+        })
         p5.endShape()
-    }
+    })
 }
 
 export function canva_config(p5, scale) {

@@ -62,12 +62,8 @@ export default class CanvasInDiv {
                             p5.strokeWeight(self.slider_line_width.value());
                             p5.strokeJoin(p5.ROUND);
                             p5.noFill();
-                            if(self.lines.length !== 0) {
-                                print_lines(self.lines, p5);
-                            }
-                            p5.beginShape();
+                            print_lines(self.lines, p5);
                             print_line(self.current_line, p5);
-                            p5.endShape()
                         } else {
                             // imagem
                             canva_config(p5, self.slider_scale);
@@ -75,12 +71,8 @@ export default class CanvasInDiv {
                             p5.strokeWeight(self.slider_line_width.value());
                             p5.strokeJoin(p5.ROUND);
                             p5.noFill();
-                            if(self.lines.length !== 0) {
-                                print_lines(self.lines, p5);
-                            }
-                            p5.beginShape();
+                            print_lines(self.lines, p5);
                             print_line(self.current_line, p5);
-                            p5.endShape()
                         }
                     }
 
