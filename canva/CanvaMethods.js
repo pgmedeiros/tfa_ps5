@@ -1,3 +1,5 @@
+const SCALE_CORRECT = 1000;
+
 export function print_line(line, p5) {
     p5.beginShape();
     line.forEach(point => {
@@ -18,7 +20,7 @@ export function print_lines(lines, p5) {
 
 export function canva_config(p5, scale) {
     p5.translate(200, 200);
-    p5.scale(scale.value() / 10);
+    p5.scale(scale.value() / SCALE_CORRECT);
     //p5.circle(0, 0, 100);
 }
 
@@ -40,7 +42,7 @@ export function mouse_movement(p5, self, sub, polyy) {
 }
 
 export function canva_design(p5, self) {
-    const inverse_of_scale = get_inverse_of_scale(self.slider_scale.value()/ 10);
+    const inverse_of_scale = get_inverse_of_scale(self.slider_scale.value()/ SCALE_CORRECT);
     p5.stroke(self.slider_line_color_one.value(), self.slider_line_color_two.value(), self.slider_line_color_three.value());
     p5.strokeWeight(inverse_of_scale * self.slider_line_width.value());
     p5.strokeJoin(p5.ROUND);
@@ -51,7 +53,7 @@ export function create_sliders(p5, self) {
     self.slider_line_color_one = p5.createSlider(0, 255, 255);
     self.slider_line_color_two = p5.createSlider(0, 255, 255);
     self.slider_line_color_three = p5.createSlider(0, 255, 255);
-    self.slider_scale = p5.createSlider(1, 50, 10);
+    self.slider_scale = p5.createSlider(1, 50000, 1000);
     self.slider_line_width = p5.createSlider(1, 5, 3)
 }
 
@@ -85,7 +87,7 @@ function guard(p5) {
 
 function transform_point(scale, x_position, y_position) {
 
-    const inverse_of_scale = get_inverse_of_scale(scale / 10);
+    const inverse_of_scale = get_inverse_of_scale(scale / SCALE_CORRECT);
 
     return {
         x: inverse_of_scale * (x_position - 200),
