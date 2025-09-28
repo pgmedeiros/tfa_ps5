@@ -29,7 +29,7 @@ html, body {
   width: calc(50% - 5px);
 
   /* A altura será 100% da altura disponível no pai */
-  height: 100%;
+  height: 90%;
 
   /* Estilos para vermos os filhos */
   background-color: #b39ddb;
