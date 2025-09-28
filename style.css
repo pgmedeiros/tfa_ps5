@@ -5,8 +5,8 @@ html, body {
 
 .display {
   /* Definimos o tamanho de referência usando as unidades que quisermos */
-  width: 80vw;  /* Ocupa 80% da largura da tela */
-  height: 80vh; /* Ocupa 50% da altura da tela */
+  width: 100vw;  /* Ocupa 80% da largura da tela */
+  height: 85vh; /* Ocupa 50% da altura da tela */
 
   /* Estilos para que possamos vê-lo */
   background-color: #d1c4e9; /* Um roxo claro */
