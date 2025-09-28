@@ -74,9 +74,9 @@ export function create_polynomial_button(p5, self) {
 
     if (self.canva.div.includes('one')) {
         self.input = p5.createInput('x');
-        self.input.position(p.x, p.bottom + 5);
+        self.input.position(p.x, p.bottom - 60);
         self.button = p5.createButton('Enviar');
-        self.button.position(p.x + 150, p.bottom + 5);
+        self.button.position(p.x + 150, p.bottom - 60);
         self.button.mousePressed(() => {
             self.poly_user_input = self.input.value();
             self.lines = [];
