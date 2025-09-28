@@ -6,7 +6,7 @@ html, body {
 .display {
   /* Definimos o tamanho de referência usando as unidades que quisermos */
   width: 100vw;  /* Ocupa 80% da largura da tela */
-  height: 85vh; /* Ocupa 50% da altura da tela */
+  height: 100vh; /* Ocupa 50% da altura da tela */
 
   /* Estilos para que possamos vê-lo */
   background-color: #d1c4e9; /* Um roxo claro */
@@ -18,6 +18,7 @@ html, body {
   /* Usamos Flexbox para alinhar os filhos dentro dele */
   display: flex;
   gap: 10px; /* Espaço entre os filhos */
+  margin: 0;
 }
 
 .canva {
@@ -29,7 +30,7 @@ html, body {
   width: calc(50% - 5px);
 
   /* A altura será 100% da altura disponível no pai */
-  height: 90%;
+  height: calc(100% - 5px);
 
   /* Estilos para vermos os filhos */
   background-color: #b39ddb;
@@ -42,6 +43,8 @@ html, body {
   align-items: center;
   color: white;
   font-size: 1.5vw;
+  margin: 0;
+  padding: 0;
 }
 
 /* Esconde o aviso por padrão */
