@@ -26,11 +26,16 @@ export default class CanvasInDiv {
         self.button = null;
         self.polyy = new Polynomial_()
         self.sub = sub;
+        self.div_interna = null;
 
         this.p5_instance = new p5(
                 function (p5) {
                     p5.setup = function () {
-                        p5.createCanvas(400, 400);
+                        self.div_interna = document.getElementById(div);
+                        console.log(self.div_interna.clientWidth, self.div_interna.clientHeight, div);
+                        console.log(p5.windowWidth, p5.windowHeight)
+                        let canva = p5.createCanvas(self.div_interna.clientWidth, self.div_interna.clientHeight);
+                        canva.parent(div);
                         self.canva = new Canvas(div, p5);
                         create_subs(self);
                         self.canva.background(color);
@@ -57,6 +62,11 @@ export default class CanvasInDiv {
                         self.lines.push(self.current_line);
                         self.current_line = [];
                     }
+
+                    p5.windowResized = function () {
+                        p5.resizeCanvas(self.div_interna.clientWidth, self.div_interna.clientHeight);
+                    }
+
                 }
                 ,div);
     }

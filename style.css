@@ -2,20 +2,44 @@ html, body {
   margin: 0;
   padding: 0;
 }
-canvas {
-  display: block;
-}
 
 .display {
+  /* Definimos o tamanho de referência usando as unidades que quisermos */
+  width: 80vw;  /* Ocupa 80% da largura da tela */
+  height: 80vh; /* Ocupa 50% da altura da tela */
+
+  /* Estilos para que possamos vê-lo */
+  background-color: #d1c4e9; /* Um roxo claro */
+  border: 2px solid #5e35b1;
+  border-radius: 10px;
+  padding: 10px; /* Adicionamos um padding interno */
+  box-sizing: border-box; /* Crucial: padding não aumenta o tamanho total */
+
+  /* Usamos Flexbox para alinhar os filhos dentro dele */
   display: flex;
-  justify-content: center; /* Centraliza horizontalmente */
-  align-items: center;    /* Centraliza verticalmente */
+  gap: 10px; /* Espaço entre os filhos */
 }
 
 .canva {
-  width: 400px;
-  height: 400px;
-  background-color: #f2f2f2;
-  border: 1px solid #ccc;
-  text-align: center;
+  /* A "mágica" acontece aqui:
+    Usamos a função calc() para que os dois filhos juntos ocupem 100% da
+    largura do PAI, subtraindo o espaço do 'gap'.
+    (100% da largura do pai - 10px do gap) / 2 para cada filho.
+  */
+  width: calc(50% - 5px);
+
+  /* A altura será 100% da altura disponível no pai */
+  height: 100%;
+
+  /* Estilos para vermos os filhos */
+  background-color: #b39ddb;
+  border: 2px solid #4527a0;
+  border-radius: 5px;
+
+  /* Apenas para centralizar o texto */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.5vw;
 }
