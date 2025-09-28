@@ -54,19 +54,19 @@ export function create_sliders(p5, self) {
     let p = self.div_interna.getBoundingClientRect()
 
     self.slider_line_color_one = p5.createSlider(0, 255, 255);
-    self.slider_line_color_one.position(p.x, p.bottom + 10);
+    self.slider_line_color_one.position(p.x, p.bottom - 10);
 
     self.slider_line_color_two = p5.createSlider(0, 255, 255);
-    self.slider_line_color_two.position(p.x, p.bottom + 20);
+    self.slider_line_color_two.position(p.x, p.bottom - 20);
 
     self.slider_line_color_three = p5.createSlider(0, 255, 255);
-    self.slider_line_color_three.position(p.x, p.bottom + 30);
+    self.slider_line_color_three.position(p.x, p.bottom - 30);
 
     self.slider_scale = p5.createSlider(1, 50000, 1000);
-    self.slider_scale.position(p.x, p.bottom + 40);
+    self.slider_scale.position(p.x, p.bottom - 40);
 
     self.slider_line_width = p5.createSlider(1, 5, 3)
-    self.slider_line_width.position(p.x, p.bottom + 50);
+    self.slider_line_width.position(p.x, p.bottom - 50);
 }
 
 export function create_polynomial_button(p5, self) {
