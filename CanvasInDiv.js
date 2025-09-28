@@ -67,6 +67,14 @@ export default class CanvasInDiv {
                         p5.resizeCanvas(self.div_interna.clientWidth, self.div_interna.clientHeight);
                     }
 
+                    p5.touchMoved = function() {
+                        p5.mouseDragged();
+                    }
+
+                    p5.touchEnded = function() {
+                        p5.mouseReleased();
+                    }
+
                 }
                 ,div);
     }
