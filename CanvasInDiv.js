@@ -7,7 +7,9 @@ import {
     mouse_movement,
     print_line,
     print_lines,
-    create_polynomial_button, create_subs
+    create_polynomial_button,
+    create_subs,
+    calc_distance_between_to_touches
 } from "./canva/CanvaMethods.js";
 export default class CanvasInDiv {
     constructor (width, height, div, color, sub) {
@@ -27,6 +29,8 @@ export default class CanvasInDiv {
         self.polyy = new Polynomial_()
         self.sub = sub;
         self.div_interna = null;
+        self.scaleFactor = 1.0;
+        self.prevDist = 0;
 
         this.p5_instance = new p5(
                 function (p5) {
@@ -46,7 +50,7 @@ export default class CanvasInDiv {
 
                     p5.draw = function () {
                         self.canva.background(self.color);
-                        canva_config(p5, self.slider_scale);
+                        canva_config(p5, self.scaleFactor);
                         mouse_movement(p5, self, sub, self.polyy);
                         canva_design(p5, self);
                         print_lines(self.lines, p5);
@@ -67,14 +71,31 @@ export default class CanvasInDiv {
                         p5.resizeCanvas(self.div_interna.clientWidth, self.div_interna.clientHeight);
                     }
 
+                    p5.touchStarted = function () {
+                        if(p5.touches.length === 2) {
+                            self.prevDist = calc_distance_between_to_touches(p5);
+                        }
+
+                    }
+
                     p5.touchMoved = function() {
-                        p5.mouseDragged();
+                        if(p5.touches.length === 2) {
+                            let currentDist = calc_distance_between_to_touches(p5);
+                            let scaleChange = currentDist / self.prevDist;
+                            self.scaleFactor *= scaleChange;
+                            self.prevDist = currentDist;
+                        } else {
+                            p5.mouseDragged();
+                        }
+
+                        return false;
                     }
 
                     p5.touchEnded = function() {
-                        p5.mouseReleased();
+                        if (touches.length < 2) {
+                            self.prevDist = 0;
+                        }
                     }
-
                 }
                 ,div);
     }

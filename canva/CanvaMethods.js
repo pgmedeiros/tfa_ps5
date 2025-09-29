@@ -20,8 +20,8 @@ export function print_lines(lines, p5) {
 
 export function canva_config(p5, scale) {
     p5.translate(200, 200);
-    p5.scale(scale.value() / SCALE_CORRECT);
-    //p5.circle(0, 0, 100);
+    p5.scale(scale);
+    p5.circle(0, 0, 100);
 }
 
 export function mouse_movement(p5, self, sub, polyy) {
@@ -113,4 +113,9 @@ function transform_point(scale, x_position, y_position) {
 
 function get_inverse_of_scale(scale) {
     return 1 / scale;
+}
+
+export function calc_distance_between_to_touches(touches, p5) {
+    return p5.dist(p5.touches[0].x, p5.touches[0].y, p5.touches[1].x, p5.touches[1].y);
+
 }
