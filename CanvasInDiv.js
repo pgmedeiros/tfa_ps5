@@ -95,6 +95,8 @@ export default class CanvasInDiv {
                         if (p5.touches.length < 2) {
                             self.prevDist = 0;
                         }
+
+                        p5.mouseReleased();
                     }
                 }
                 ,div);
