@@ -115,7 +115,7 @@ function get_inverse_of_scale(scale) {
     return 1 / scale;
 }
 
-export function calc_distance_between_to_touches(touches, p5) {
+export function calc_distance_between_to_touches(p5) {
     return p5.dist(p5.touches[0].x, p5.touches[0].y, p5.touches[1].x, p5.touches[1].y);
 
 }

@@ -92,7 +92,7 @@ export default class CanvasInDiv {
                     }
 
                     p5.touchEnded = function() {
-                        if (touches.length < 2) {
+                        if (p5.touches.length < 2) {
                             self.prevDist = 0;
                         }
                     }
