@@ -50,7 +50,7 @@ export default class CanvasInDiv {
 
                     p5.draw = function () {
                         self.canva.background(self.color);
-                        canva_config(p5, self.scaleFactor);
+                        canva_config(p5, self);
                         mouse_movement(p5, self, sub, self.polyy);
                         canva_design(p5, self);
                         print_lines(self.lines, p5);

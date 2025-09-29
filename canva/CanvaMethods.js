@@ -18,9 +18,10 @@ export function print_lines(lines, p5) {
     })
 }
 
-export function canva_config(p5, scale) {
-    p5.translate(200, 200);
-    p5.scale(scale);
+export function canva_config(p5, self) {
+    let inverse_of_scale = get_inverse_of_scale(self.scaleFactor);
+    p5.translate((self.div_interna.clientWidth / 2) * inverse_of_scale, (self.div_interna.clientHeight / 2) * inverse_of_scale);
+    p5.scale(self.scaleFactor);
     p5.circle(0, 0, 100);
 }
 
