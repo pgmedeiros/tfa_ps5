@@ -96,8 +96,8 @@ export default class CanvasInDiv {
                                 self.prevDist = currentDist;
                             }
                         } else if(p5.touches.length === 3){
-                            self.translate_x = p5.touches[0].x - self.touch_begin_x;
-                            self.translate_y = p5.touches[0].y - self.touch_begin_y;
+                            self.translate_x += p5.touches[0].x - self.touch_begin_x;
+                            self.translate_y += p5.touches[0].y - self.touch_begin_y;
                         }
                         else {
                             p5.mouseDragged();
