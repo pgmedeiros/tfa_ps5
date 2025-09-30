@@ -31,6 +31,10 @@ export default class CanvasInDiv {
         self.sub = sub;
         self.div_interna = null;
         self.scaleFactor = 1.0;
+        self.translate_x = 0;
+        self.translate_y = 0;
+        self.touch_begin_x = 0;
+        self.touch_begin_y = 0;
         self.prevDist = 0;
 
         this.p5_instance = new p5(
@@ -54,8 +58,8 @@ export default class CanvasInDiv {
                         canva_config(p5, self);
                         mouse_movement(p5, self, sub, self.polyy);
                         canva_design(p5, self);
-                        print_lines(self.lines, p5);
-                        print_line(self.current_line, p5);
+                        print_lines(self.translate_x, self.translate_y, self.lines, p5);
+                        print_line(self.translate_x, self.translate_y, self.current_line, p5);
                     }
 
                     p5.mouseDragged = function () {
@@ -76,6 +80,10 @@ export default class CanvasInDiv {
                         if(p5.touches.length === 2) {
                             self.prevDist = calc_distance_between_to_touches(p5);
                         }
+                        if(p5.touches.length === 3) {
+                            self.touch_begin_x = p5.touches[0].clientX;
+                            self.touch_begin_y = p5.touches[0].clientY;
+                        }
 
                     }
 
@@ -87,7 +95,11 @@ export default class CanvasInDiv {
                                 self.scaleFactor *= scaleChange;
                                 self.prevDist = currentDist;
                             }
-                        } else {
+                        } else if(p5.touches.length === 3){
+                            self.translate_x = p5.touches[0].clientX - self.touch_begin_x;
+                            self.translate_y = p5.touches[0].clientY - self.touch_begin_y;
+                        }
+                        else {
                             p5.mouseDragged();
                         }
 

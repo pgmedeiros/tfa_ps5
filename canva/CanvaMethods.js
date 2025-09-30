@@ -1,18 +1,18 @@
 const SCALE_CORRECT = 1000;
 
-export function print_line(line, p5) {
+export function print_line(t_x, t_y, line, p5) {
     p5.beginShape();
     line.forEach(point => {
-        p5.curveVertex(point.x, point.y);
+        p5.curveVertex(point.x - t_x, point.y - t_y);
     })
     p5.endShape()
 }
 
-export function print_lines(lines, p5) {
+export function print_lines(t_x, t_y, lines, p5) {
     lines.forEach(line => {
         p5.beginShape();
         line.forEach(point => {
-            p5.curveVertex(point.x, point.y);
+            p5.curveVertex(point.x - t_x, point.y - t_y);
         })
         p5.endShape()
     })
@@ -21,7 +21,7 @@ export function print_lines(lines, p5) {
 export function canva_config(p5, self) {
     let inverse_of_scale = get_inverse_of_scale(self.scaleFactor);
     p5.scale(self.scaleFactor);
-    p5.translate((self.div_interna.clientWidth / 2) * inverse_of_scale, (self.div_interna.clientHeight / 2) * inverse_of_scale);
+    p5.translate(((self.div_interna.clientWidth / 2) * inverse_of_scale) + self.translate_x, ((self.div_interna.clientHeight / 2) * inverse_of_scale) + self.translate_y);
     p5.circle(0, 0, 100);
 }
 
@@ -147,5 +147,8 @@ export function scale_guard(p5) {
 
 export function calc_distance_between_to_touches(p5) {
     return p5.dist(p5.touches[0].x, p5.touches[0].y, p5.touches[1].x, p5.touches[1].y);
+}
+
+export function calculate_distance_between_init_and_end_of_touch(p5) {
 
 }
