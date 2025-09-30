@@ -94,11 +94,10 @@ export default class CanvasInDiv {
                                 let scaleChange = currentDist / self.prevDist;
                                 self.scaleFactor *= scaleChange;
                                 self.prevDist = currentDist;
+                                self.translate_x += (p5.touches[0].x - self.touch_begin_x)/100;
+                                self.translate_y += (p5.touches[0].y - self.touch_begin_y)/100;
+                                }
                             }
-                        } else if(p5.touches.length === 3){
-                            self.translate_x += (p5.touches[0].x - self.touch_begin_x)/100;
-                            self.translate_y += (p5.touches[0].y - self.touch_begin_y)/100;
-                        }
                         else {
                             p5.mouseDragged();
                         }
