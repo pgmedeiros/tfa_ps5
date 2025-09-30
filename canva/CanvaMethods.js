@@ -27,7 +27,7 @@ export function canva_config(p5, self) {
 
 export function mouse_movement(p5, self, sub, polyy) {
     if (self.canva.div.includes('one')) {
-        if(guard(p5)) {
+        if(!guard(p5)) {
             return;
         }
 
@@ -97,7 +97,7 @@ export function create_subs(self) {
 }
 
 function guard(p5) {
-    if (p5.pmouseX < 0 || p5.pmouseX >= p5.width || p5.pmouseY < 0 || p5.pmouseY >= p5.height) {
+    if (p5.pmouseX >= 0 && p5.pmouseX <= p5.width && p5.pmouseY >= 0 && p5.pmouseY <= p5.height) {
         return true;
     }
 }
