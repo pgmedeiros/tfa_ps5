@@ -9,7 +9,8 @@ import {
     print_lines,
     create_polynomial_button,
     create_subs,
-    calc_distance_between_to_touches
+    calc_distance_between_to_touches,
+    scale_guard
 } from "./canva/CanvaMethods.js";
 export default class CanvasInDiv {
     constructor (width, height, div, color, sub) {
@@ -80,10 +81,12 @@ export default class CanvasInDiv {
 
                     p5.touchMoved = function() {
                         if(p5.touches.length === 2) {
-                            let currentDist = calc_distance_between_to_touches(p5);
-                            let scaleChange = currentDist / self.prevDist;
-                            self.scaleFactor *= scaleChange;
-                            self.prevDist = currentDist;
+                            if(scale_guard(p5)) {
+                                let currentDist = calc_distance_between_to_touches(p5);
+                                let scaleChange = currentDist / self.prevDist;
+                                self.scaleFactor *= scaleChange;
+                                self.prevDist = currentDist;
+                            }
                         } else {
                             p5.mouseDragged();
                         }

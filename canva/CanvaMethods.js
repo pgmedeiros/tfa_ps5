@@ -116,6 +116,14 @@ function get_inverse_of_scale(scale) {
     return 1 / scale;
 }
 
+
+export function scale_guard(p5) {
+    return p5.touches[0].x >= 0 && p5.touches[0].x <= p5.width
+        && p5.touches[0].y >= 0 && p5.touches[0].y <= p5.height
+        && p5.touches[1].x >= 0 && p5.touches[1].x <= p5.width
+        && p5.touches[1].y >= 0 && p5.touches[1].y <= p5.height
+}
+
 export function calc_distance_between_to_touches(p5) {
     return p5.dist(p5.touches[0].x, p5.touches[0].y, p5.touches[1].x, p5.touches[1].y);
 
