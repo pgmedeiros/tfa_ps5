@@ -1,9 +1,10 @@
 export default class Canvas {
 
-    constructor(div, p5_instance) {
+    constructor(div, p5_instance, canva) {
         this.subs = []
         this.div = div;
         this.p5_instance = p5_instance;
+        this.canva_instance = canva;
     }
 
     background(color) {

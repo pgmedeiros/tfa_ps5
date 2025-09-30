@@ -41,10 +41,10 @@ export default class CanvasInDiv {
                         console.log(p5.windowWidth, p5.windowHeight)
                         let canva = p5.createCanvas(self.div_interna.clientWidth, self.div_interna.clientHeight);
                         canva.parent(div);
-                        self.canva = new Canvas(div, p5);
+                        self.canva = new Canvas(div, p5, canva);
                         create_subs(self);
                         self.canva.background(color);
-                        //create_sliders(p5, self);
+                        create_sliders(p5, self);
                         create_polynomial_button(p5, self);
 
                     };

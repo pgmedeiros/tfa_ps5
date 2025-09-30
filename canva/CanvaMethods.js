@@ -75,9 +75,30 @@ export function create_polynomial_button(p5, self) {
 
     if (self.canva.div.includes('one')) {
         self.input = p5.createInput('x');
-        self.input.position(p.x, p.bottom - 60);
+        self.input.parent('one');
+        self.input.position(15, 15);
+
+        self.input.style('padding', '0');
+
+        // Remove o espaçamento externo
+        self.input.style('margin', '0');
+
+        // Remove a borda (você pode usar 'none' ou '0')
+        self.input.style('border', 'none');
+
+        // Opcional: Remove o fundo padrão para que pareça mais com texto puro
         self.button = p5.createButton('Enviar');
-        self.button.position(p.x + 150, p.bottom - 60);
+        self.button.parent('one');
+        self.button.position(150, 15);
+
+        self.button.style('padding', '0');
+
+        // Remove o espaçamento externo
+        self.button.style('margin', '0');
+
+        // Remove a borda (você pode usar 'none' ou '0')
+        self.button.style('border', 'none');
+
         self.button.mousePressed(() => {
             self.poly_user_input = self.input.value();
             self.lines = [];
