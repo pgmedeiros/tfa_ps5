@@ -133,7 +133,7 @@ function transform_point(scale, x_position, y_position) {
     }
 }
 
-function get_inverse_of_scale(scale) {
+export function get_inverse_of_scale(scale) {
     return 1 / scale;
 }
 

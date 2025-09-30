@@ -10,7 +10,7 @@ import {
     create_polynomial_button,
     create_subs,
     calc_distance_between_to_touches,
-    scale_guard
+    scale_guard, get_inverse_of_scale
 } from "./canva/CanvaMethods.js";
 export default class CanvasInDiv {
     constructor (width, height, div, color, sub) {
@@ -87,12 +87,13 @@ export default class CanvasInDiv {
                     p5.touchMoved = function() {
                         if(p5.touches.length === 2) {
                             if(scale_guard(p5)) {
+                                let inverse_of_scale = get_inverse_of_scale(self.scaleFactor);
                                 let currentDist = calc_distance_between_to_touches(p5);
                                 let scaleChange = currentDist / self.prevDist;
                                 self.scaleFactor *= scaleChange;
                                 self.prevDist = currentDist;
-                                self.translate_x += (p5.touches[0].x - self.touch_begin_x)/100;
-                                self.translate_y += (p5.touches[0].y - self.touch_begin_y)/100;
+                                self.translate_x += (p5.touches[0].x - self.touch_begin_x)/80*inverse_of_scale;
+                                self.translate_y += (p5.touches[0].y - self.touch_begin_y)/80*inverse_of_scale;
                                 }
                             }
                         else {
