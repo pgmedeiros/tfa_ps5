@@ -3,7 +3,7 @@ const SCALE_CORRECT = 1000;
 export function print_line(t_x, t_y, line, p5) {
     p5.beginShape();
     line.forEach(point => {
-        p5.curveVertex(point.x - t_x, point.y - t_y);
+        p5.curveVertex(point.x, point.y);
     })
     p5.endShape()
 }
@@ -12,7 +12,7 @@ export function print_lines(t_x, t_y, lines, p5) {
     lines.forEach(line => {
         p5.beginShape();
         line.forEach(point => {
-            p5.curveVertex(point.x - t_x, point.y - t_y);
+            p5.curveVertex(point.x, point.y);
         })
         p5.endShape()
     })
@@ -33,7 +33,7 @@ export function mouse_movement(p5, self, sub, polyy) {
 
         if (self.dragged === true && p5.pmouseX !== p5.mouseX && p5.pmouseX !== p5.mouseX) {
             let position = transform_point(self.scaleFactor, p5.mouseX, p5.mouseY);
-            let point = p5.createVector(position.x, position.y);
+            let point = p5.createVector(position.x - self.translate_x, position.y - self.translate_y);
             let img_p = polyy.getImage(position.x,  position.y, self.poly_user_input);
             let imgPoint = p5.createVector(img_p.x, img_p.y);
             self.current_line.push(point);
