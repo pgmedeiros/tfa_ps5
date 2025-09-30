@@ -44,7 +44,7 @@ export default class CanvasInDiv {
                         self.canva = new Canvas(div, p5);
                         create_subs(self);
                         self.canva.background(color);
-                        create_sliders(p5, self);
+                        //create_sliders(p5, self);
                         create_polynomial_button(p5, self);
 
                     };
