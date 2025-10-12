@@ -22,6 +22,21 @@ botaoToggle.addEventListener('click', () => {
     }
 });
 
+let btn1 = document.getElementById('btn1');
+btn1.addEventListener('click', () => {
+    console.log("Botão 1 clicado!");
+});
+
+let btn2 = document.getElementById('btn2');
+btn2.addEventListener('click', () => {
+    console.log("Botão 2 clicado!");
+});
+
+let btn3 = document.getElementById('btn3');
+btn3.addEventListener('click', () => {
+    console.log("Botão 3 clicado!");
+});
+
 
 
 const img = new CanvasInDiv(400, 400, 'two', 0, []); // preto, embaixo
