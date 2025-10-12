@@ -41,8 +41,6 @@ export default class CanvasInDiv {
                 function (p5) {
                     p5.setup = function () {
                         self.div_interna = document.getElementById(div);
-                        console.log(self.div_interna.clientWidth, self.div_interna.clientHeight, div);
-                        console.log(p5.windowWidth, p5.windowHeight)
                         let canva = p5.createCanvas(self.div_interna.clientWidth, self.div_interna.clientHeight);
                         canva.parent(div);
                         self.canva = new Canvas(div, p5, canva);
