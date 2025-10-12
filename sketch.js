@@ -1,7 +1,9 @@
-import CanvasInDiv from "./CanvasInDiv.js";
+import FreeHandComplexInComplex from "./CanvaWay/FreeHandComplexInComplex.js";
 
-const elementoTelaCheia = document.getElementById('display');
+const elementoTelaCheia = document.getElementById('screen');
 const botaoToggle = document.getElementById('toggle-fullscreen');
+let img = null;
+let domain = null;
 
 botaoToggle.addEventListener('click', () => {
     // Verifica se já estamos em modo tela cheia
@@ -29,16 +31,12 @@ btn1.addEventListener('click', () => {
 
 let btn2 = document.getElementById('btn2');
 btn2.addEventListener('click', () => {
-    console.log("Botão 2 clicado!");
+    img = new FreeHandComplexInComplex(400, 400, 'two', 0, []);
+    domain = new FreeHandComplexInComplex(400, 400, 'one', 100, [img]); // cinza, em cima
 });
 
-let btn3 = document.getElementById('btn3');
+let btn3 = document.getElementById('c_em_c_livre');
 btn3.addEventListener('click', () => {
-    console.log("Botão 3 clicado!");
+    img = new FreeHandComplexInComplex(400, 400, 'two', 0, []);
+    domain = new FreeHandComplexInComplex(400, 400, 'one', 100, [img]); // cinza, em cima
 });
-
-
-
-const img = new CanvasInDiv(400, 400, 'two', 0, []); // preto, embaixo
-new CanvasInDiv(400, 400, 'one', 100, [img]); // cinza, em cima
-

@@ -1,5 +1,5 @@
 import Canvas from "./Canvas.js";
-import Polynomial_ from "./math/Polynomial_.js";
+import Polynomial_ from "../math/Polynomial_.js";
 import {
     canva_config,
     canva_design,
@@ -11,8 +11,8 @@ import {
     create_subs,
     calc_distance_between_to_touches,
     scale_guard, get_inverse_of_scale
-} from "./canva/CanvaMethods.js";
-export default class CanvasInDiv {
+} from "../canva/CanvaMethods.js";
+export default class FreeHandComplexInComplex {
     constructor (width, height, div, color, sub) {
         const self = this;
         self.canva = null;
