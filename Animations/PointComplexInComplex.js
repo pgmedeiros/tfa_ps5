@@ -1,5 +1,6 @@
 import Canvas from "./Canvas.js";
 import {
+    calc_distance_between_to_touches,
     canva_config, canva_design,
     create_polynomial_button,
     create_subs, guard, mouse_movement, print_point, print_points, scale_and_movement, transform_point
@@ -35,6 +36,11 @@ export default class PointComplexInComplex {
         }
 
         touchStarted(self, p5) {
+            if(p5.touches.length === 2) {
+                self.prevDist = calc_distance_between_to_touches(p5);
+                self.touch_begin_x = p5.touches[0].x;
+                self.touch_begin_y = p5.touches[0].y;
+            }
             if(p5.touches.length === 1) {
                 let position = transform_point(self.scaleFactor, p5.mouseX, p5.mouseY);
 
@@ -58,6 +64,9 @@ export default class PointComplexInComplex {
         }
 
         touchEnded(self, p5) {
+            if (p5.touches.length < 2) {
+                self.prevDist = 0;
+            }
         }
 
 
