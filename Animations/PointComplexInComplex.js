@@ -45,7 +45,7 @@ export default class PointComplexInComplex {
 
                 const img = self.polyy.getImage(position.x - self.translate_x, position.y - self.translate_y, self.poly_user_input);
 
-                const point = new Point(position.x - self.translate_x, position.y - self.translate_y, img.x, img.y);
+                const point = new Point(position.x - self.translate_x, position.y - self.translate_y, img.x + 400, img.y + 400);
                 print_point(p5, self, point);
             }
         }

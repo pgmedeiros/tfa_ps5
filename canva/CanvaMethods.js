@@ -1,3 +1,5 @@
+import Point from "./Point.js";
+
 export function print_line(t_x, t_y, line, p5) {
     p5.beginShape();
     line.forEach(point => {
@@ -23,9 +25,21 @@ export function print_point(p5, self, point) {
 export function print_points(p5, self) {
 
     self.points.forEach(point => {
-        point.current_x = p5.lerp(point.current_x, point.img_x, 0.3);
-        point.current_y = p5.lerp(point.current_y, point.img_y, 0.3);
+        point.current_x = p5.lerp(point.current_x, point.img_x, 0.01);
+        point.current_y = p5.lerp(point.current_y, point.img_y, 0.01);
+
+        if (point.current_x > 400) {
+            let new_point = new Point(0, point.domain_y, point.img_x, point.img_y);
+
+            self.sub.forEach(sub_obj => {
+                sub_obj.points.push(new_point);
+            })
+        }
+
+
     })
+
+    self.points = self.points.filter(point => point.current_x < 400);
 
     self.points.forEach(point => {
         p5.point(point.current_x, point.current_y);
