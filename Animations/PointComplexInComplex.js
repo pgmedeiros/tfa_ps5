@@ -21,7 +21,6 @@ export default class PointComplexInComplex {
         draw(self, p5){
             self.canva.background(self.color);
             canva_config(p5, self);
-            mouse_movement(p5, self, self.sub, self.polyy);
             canva_design(p5, self);
             print_points(p5, self);
         }
@@ -36,17 +35,19 @@ export default class PointComplexInComplex {
         }
 
         touchStarted(self, p5) {
-            let position = transform_point(self.scaleFactor, p5.mouseX, p5.mouseY);
+            if(p5.touches.length === 1) {
+                let position = transform_point(self.scaleFactor, p5.mouseX, p5.mouseY);
 
-            if (self.canva.div.includes('one')) {
-                if(!guard(p5)) {
-                    return;
+                if (self.canva.div.includes('one')) {
+                    if(!guard(p5)) {
+                        return;
+                    }
+
+                    const img = self.polyy.getImage(position.x - self.translate_x, position.y - self.translate_y, self.poly_user_input);
+
+                    const point = new Point(position.x - self.translate_x, position.y - self.translate_y, img.x - self.translate_y + 1000, img.y - self.translate_y);
+                    print_point(p5, self, point);
                 }
-
-                const img = self.polyy.getImage(position.x - self.translate_x, position.y - self.translate_y, self.poly_user_input);
-
-                const point = new Point(position.x - self.translate_x, position.y - self.translate_y, img.x - self.translate_y + 1000, img.y - self.translate_y);
-                print_point(p5, self, point);
             }
         }
 
