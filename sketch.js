@@ -45,4 +45,5 @@ btn2.addEventListener('click', () => {
 let btn3 = document.getElementById('c_em_c_livre');
 btn3.addEventListener('click', () => {
     canvase.change_animation(complex_to_complex_animation);
+    canva_img.change_animation(complex_to_complex_animation);
 });
