@@ -39,7 +39,7 @@ btn1.addEventListener('click', () => {
     console.log("Botão 1 clicado!");
 });
 
-let btn2 = document.getElementById('btn2');
+let btn2 = document.getElementById('c_em_c_ponto');
 btn2.addEventListener('click', () => {
     canvase.change_animation(point_complex_to_complex_animation);
     canva_img.change_animation(point_complex_to_complex_animation);
