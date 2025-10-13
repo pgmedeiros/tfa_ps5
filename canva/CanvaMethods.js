@@ -46,7 +46,7 @@ export function print_points(p5, self) {
 
     })
 
-    self.points = self.points.filter(point => point.current_x < 400);
+    self.points = self.points.filter(point => point.current_x < (400 * get_inverse_of_scale(self.scaleFactor)));
 
     self.points.forEach(point => {
         p5.point(point.current_x, point.current_y);
