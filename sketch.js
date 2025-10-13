@@ -31,8 +31,8 @@ const point_complex_to_complex_animation = new PointComplexInComplex();
 const point_real_to_real_animation = new PointRealInReal();
 
 
-const canva_img = new Canvase(400, 400, 'two', 0, [], free_hand_complex_to_complex_animation);
-const canvase = new Canvase(400, 400, 'one', 100, [canva_img], free_hand_complex_to_complex_animation);
+const canva_img = new Canvase(400, 400, 'two', 0, [], point_real_to_real_animation);
+const canvase = new Canvase(400, 400, 'one', 100, [canva_img], point_real_to_real_animation);
 
 
 let btn1 = document.getElementById('btn1');
