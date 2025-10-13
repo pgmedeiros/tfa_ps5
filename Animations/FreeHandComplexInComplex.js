@@ -9,7 +9,7 @@ import {
     create_polynomial_button,
     create_subs,
     calc_distance_between_to_touches,
-    scale_guard, get_inverse_of_scale
+    scale_guard, get_inverse_of_scale, scale_and_movement
 } from "../canva/CanvaMethods.js";
 export default class FreeHandComplexInComplex {
     setup(self, p5) {
@@ -56,22 +56,8 @@ export default class FreeHandComplexInComplex {
     }
 
     touchMoved(self, p5) {
-        if(p5.touches.length === 2) {
-            if(scale_guard(p5)) {
-                let inverse_of_scale = get_inverse_of_scale(self.scaleFactor);
-                let currentDist = calc_distance_between_to_touches(p5);
-                let scaleChange = currentDist / self.prevDist;
-                self.scaleFactor *= scaleChange;
-                self.prevDist = currentDist;
-                //self.translate_x += (p5.touches[0].x - self.touch_begin_x)/80*inverse_of_scale;
-                //self.translate_y += (p5.touches[0].y - self.touch_begin_y)/80*inverse_of_scale;
-                self.translate_x += p5.movedX;
-                self.translate_y += p5.movedY;
-            }
-            }
-        else {
-            p5.mouseDragged();
-        }
+
+        scale_and_movement(self, p5);
 
         return false;
     }
