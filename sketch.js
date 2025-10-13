@@ -2,6 +2,7 @@ import FreeHandComplexInComplex from "./Animations/FreeHandComplexInComplex.js";
 import Canvase from "./Animations/Canvase.js";
 import Canvas from "./Animations/Canvas.js";
 import PointComplexInComplex from "./Animations/PointComplexInComplex.js";
+import PointRealInReal from "./Animations/PointRealInReal.js";
 
 const elementoTelaCheia = document.getElementById('screen');
 const botaoToggle = document.getElementById('toggle-fullscreen');
@@ -27,7 +28,7 @@ botaoToggle.addEventListener('click', () => {
 
 const free_hand_complex_to_complex_animation = new FreeHandComplexInComplex();
 const point_complex_to_complex_animation = new PointComplexInComplex();
-
+const point_real_to_real_animation = new PointRealInReal();
 
 
 const canva_img = new Canvase(400, 400, 'two', 0, [], free_hand_complex_to_complex_animation);
@@ -36,11 +37,20 @@ const canvase = new Canvase(400, 400, 'one', 100, [canva_img], free_hand_complex
 
 let btn1 = document.getElementById('btn1');
 btn1.addEventListener('click', () => {
-    console.log("Botão 1 clicado!");
+    canvase.domain_stable_points = []
+    canvase.points = [];
+    canva_img.domain_stable_points = []
+    canva_img.points = [];
+    canvase.change_animation(point_real_to_real_animation);
+    canva_img.change_animation(point_real_to_real_animation);
 });
 
 let btn2 = document.getElementById('c_em_c_ponto');
 btn2.addEventListener('click', () => {
+    canvase.domain_stable_points = []
+    canvase.points = [];
+    canva_img.domain_stable_points = []
+    canva_img.points = [];
     canvase.change_animation(point_complex_to_complex_animation);
     canva_img.change_animation(point_complex_to_complex_animation);
 });
