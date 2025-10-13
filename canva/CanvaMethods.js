@@ -57,6 +57,7 @@ export function canva_config(p5, self) {
     let inverse_of_scale = get_inverse_of_scale(self.scaleFactor);
     p5.scale(self.scaleFactor);
     p5.translate(((self.div_interna.clientWidth / 2) * inverse_of_scale) + self.translate_x, ((self.div_interna.clientHeight / 2) * inverse_of_scale) + self.translate_y);
+    p5.circle(0, 0, 100);
 }
 
 export function mouse_movement(p5, self, sub, polyy) {
