@@ -1,9 +1,17 @@
 import Canvas from "./Canvas.js";
 import {
     calc_distance_between_to_touches,
-    canva_config, canva_design,
+    canva_config,
+    canva_design,
     create_polynomial_button,
-    create_subs, guard, mouse_movement, print_point, print_points, scale_and_movement, transform_point
+    create_subs,
+    get_inverse_of_scale,
+    guard,
+    mouse_movement,
+    print_point,
+    print_points,
+    scale_and_movement,
+    transform_point
 } from "../canva/CanvaMethods.js";
 import Point from "../canva/Point.js";
 
@@ -51,7 +59,7 @@ export default class PointComplexInComplex {
 
                     const img = self.polyy.getImage(position.x - self.translate_x, position.y - self.translate_y, self.poly_user_input);
 
-                    const point = new Point(position.x - self.translate_x, position.y - self.translate_y, img.x - self.translate_y + 1000, img.y - self.translate_y);
+                    const point = new Point(position.x - self.translate_x, position.y - self.translate_y, img.x - self.translate_y + (1000 * get_inverse_of_scale(self.scaleFactor)), img.y - self.translate_y);
                     print_point(p5, self, point);
                 }
             }
