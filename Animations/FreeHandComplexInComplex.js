@@ -19,7 +19,7 @@ export default class FreeHandComplexInComplex {
         self.canva = new Canvas(self.div, p5, canva);
         create_subs(self);
         self.canva.background(self.color);
-        create_sliders(p5, self);
+        //create_sliders(p5, self);
         create_polynomial_button(p5, self);
 
     };
