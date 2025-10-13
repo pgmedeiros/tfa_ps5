@@ -24,12 +24,16 @@ export function print_point(p5, self, point) {
 
 export function print_points(p5, self) {
 
+    if (self.canva.div.includes('one')) {
+
+    }
+
     self.points.forEach(point => {
-        point.current_x = p5.lerp(point.current_x, point.img_x, 0.01);
-        point.current_y = p5.lerp(point.current_y, point.img_y, 0.01);
+        point.current_x = p5.lerp(point.current_x, point.img_x, 0.05);
+        point.current_y = p5.lerp(point.current_y, point.img_y, 0.05);
 
         if (point.current_x > 400) {
-            let new_point = new Point(0, point.domain_y, point.img_x, point.img_y);
+            let new_point = new Point(-200, point.current_y, point.img_x - 1000, point.img_y);
 
             self.sub.forEach(sub_obj => {
                 sub_obj.points.push(new_point);
