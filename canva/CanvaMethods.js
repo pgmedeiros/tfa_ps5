@@ -18,6 +18,20 @@ export function print_lines(t_x, t_y, lines, p5) {
     })
 }
 
+export function print_point(p5, self, point) {
+    self.points.push(point);
+}
+export function print_points(p5, self) {
+
+    self.points.forEach(point => {
+        point.new_current();
+    })
+
+    self.points.forEach(point => {
+        p5.point(point.current_x, point.current_y);
+    })
+}
+
 export function canva_config(p5, self) {
     let inverse_of_scale = get_inverse_of_scale(self.scaleFactor);
     p5.scale(self.scaleFactor);
@@ -117,7 +131,7 @@ export function create_subs(self) {
     }
 }
 
-function guard(p5) {
+export function guard(p5) {
     if (p5.pmouseX >= 0 && p5.pmouseX <= p5.width && p5.pmouseY >= 0 && p5.pmouseY <= p5.height) {
         return true;
     }

@@ -25,7 +25,8 @@ export default class Canvase {
         self.touch_begin_x = 0;
         self.touch_begin_y = 0;
         self.prevDist = 0;
-        self.animation = animation
+        self.animation = animation;
+        self.points = [];
 
         this.p5_instance = new p5(
                 function (p5, animation) {
