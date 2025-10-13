@@ -35,8 +35,8 @@ export function print_points(p5, self) {
         point.current_x = p5.lerp(point.current_x, point.img_x, 0.05);
         point.current_y = p5.lerp(point.current_y, point.img_y, 0.05);
 
-        if (point.current_x > 400) {
-            let new_point = new Point(-200, point.current_y, point.img_x - 1000, point.img_y);
+        if (point.current_x > (400 * get_inverse_of_scale(self.scaleFactor))) {
+            let new_point = new Point((-200 * get_inverse_of_scale(self.scaleFactor)), point.current_y, point.img_x - (1000 * get_inverse_of_scale(self.scaleFactor)), point.img_y);
 
             self.sub.forEach(sub_obj => {
                 sub_obj.points.push(new_point);
