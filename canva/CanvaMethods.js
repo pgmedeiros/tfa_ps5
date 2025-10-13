@@ -137,7 +137,7 @@ export function guard(p5) {
     }
 }
 
-function transform_point(scale, x_position, y_position) {
+export function transform_point(scale, x_position, y_position) {
 
     const inverse_of_scale = get_inverse_of_scale(scale);
 
@@ -161,8 +161,4 @@ export function scale_guard(p5) {
 
 export function calc_distance_between_to_touches(p5) {
     return p5.dist(p5.touches[0].x, p5.touches[0].y, p5.touches[1].x, p5.touches[1].y);
-}
-
-export function calculate_distance_between_init_and_end_of_touch(p5) {
-
 }

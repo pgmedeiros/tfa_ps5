@@ -2,7 +2,7 @@ import Canvas from "./Canvas.js";
 import {
     canva_config, canva_design,
     create_polynomial_button,
-    create_subs, guard, mouse_movement, print_point, print_points
+    create_subs, guard, mouse_movement, print_point, print_points, transform_point
 } from "../canva/CanvaMethods.js";
 import Point from "../canva/Point.js";
 
@@ -36,14 +36,16 @@ export default class PointComplexInComplex {
         }
 
         touchStarted(self, p5) {
+            let position = transform_point(self.scaleFactor, p5.mouseX, p5.mouseY);
+
             if (self.canva.div.includes('one')) {
                 if(!guard(p5)) {
                     return;
                 }
 
-                const img = self.polyy.getImage(p5.mouseX, p5.mouseY, self.poly_user_input);
+                const img = self.polyy.getImage(position.x - self.translate_x, position.y - self.translate_y);
 
-                const point = new Point(p5.mouseX, p5.mouseY, img.x, img.y);
+                const point = new Point(position.x - self.translate_x, position.y - self.translate_y, img.x, img.y);
                 print_point(p5, self, point);
             }
         }
