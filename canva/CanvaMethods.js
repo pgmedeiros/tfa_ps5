@@ -20,12 +20,15 @@ export function print_lines(t_x, t_y, lines, p5) {
 
 export function print_point(p5, self, point) {
     self.points.push(point);
+    self.domain_stable_points.push(point);
 }
 
 export function print_points(p5, self) {
 
     if (self.canva.div.includes('one')) {
-
+        self.domain_stable_points.forEach(point => {
+            p5.point(point.domain_x, point.domain_y);
+        })
     }
 
     self.points.forEach(point => {
