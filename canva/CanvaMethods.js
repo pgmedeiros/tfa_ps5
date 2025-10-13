@@ -1,5 +1,3 @@
-const SCALE_CORRECT = 1000;
-
 export function print_line(t_x, t_y, line, p5) {
     p5.beginShape();
     line.forEach(point => {
@@ -21,10 +19,12 @@ export function print_lines(t_x, t_y, lines, p5) {
 export function print_point(p5, self, point) {
     self.points.push(point);
 }
+
 export function print_points(p5, self) {
 
     self.points.forEach(point => {
-        point.new_current();
+        point.current_x = p5.lerp(point.current_x, point.img_x, 0.3);
+        point.current_y = p5.lerp(point.current_y, point.img_y, 0.3);
     })
 
     self.points.forEach(point => {
