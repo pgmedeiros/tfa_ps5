@@ -1,9 +1,9 @@
 import FreeHandComplexInComplex from "./CanvaWay/FreeHandComplexInComplex.js";
+import Canvase from "./CanvaWay/Canvase.js";
+import Canvas from "./CanvaWay/Canvas.js";
 
 const elementoTelaCheia = document.getElementById('screen');
 const botaoToggle = document.getElementById('toggle-fullscreen');
-let img = null;
-let domain = null;
 
 botaoToggle.addEventListener('click', () => {
     // Verifica se já estamos em modo tela cheia
@@ -24,6 +24,14 @@ botaoToggle.addEventListener('click', () => {
     }
 });
 
+const complex_to_complex_animation = new FreeHandComplexInComplex();
+
+
+
+const canva_img = new Canvase(400, 400, 'two', 0, [], complex_to_complex_animation);
+const canvase = new Canvase(400, 400, 'one', 100, [canva_img], complex_to_complex_animation);
+
+
 let btn1 = document.getElementById('btn1');
 btn1.addEventListener('click', () => {
     console.log("Botão 1 clicado!");
@@ -31,12 +39,10 @@ btn1.addEventListener('click', () => {
 
 let btn2 = document.getElementById('btn2');
 btn2.addEventListener('click', () => {
-    img = new FreeHandComplexInComplex(400, 400, 'two', 0, []);
-    domain = new FreeHandComplexInComplex(400, 400, 'one', 100, [img]); // cinza, em cima
+
 });
 
 let btn3 = document.getElementById('c_em_c_livre');
 btn3.addEventListener('click', () => {
-    img = new FreeHandComplexInComplex(400, 400, 'two', 0, []);
-    domain = new FreeHandComplexInComplex(400, 400, 'one', 100, [img]); // cinza, em cima
+    canvase.change_animation(complex_to_complex_animation);
 });
