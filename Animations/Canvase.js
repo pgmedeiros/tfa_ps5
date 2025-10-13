@@ -65,6 +65,6 @@ export default class Canvase {
     }
 
     change_animation(animation) {
-        self.animation = animation;
+        this.animation = animation;
     }
 }
