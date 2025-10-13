@@ -2,7 +2,7 @@ import Canvas from "./Canvas.js";
 import {
     canva_config, canva_design,
     create_polynomial_button,
-    create_subs, guard, mouse_movement, print_point, print_points, transform_point
+    create_subs, guard, mouse_movement, print_point, print_points, scale_and_movement, transform_point
 } from "../canva/CanvaMethods.js";
 import Point from "../canva/Point.js";
 
@@ -51,6 +51,9 @@ export default class PointRealInReal {
     }
 
     touchMoved(self, p5) {
+        scale_and_movement(self, p5);
+
+        return false;
     }
 
     touchEnded(self, p5) {
