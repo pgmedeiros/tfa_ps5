@@ -102,3 +102,25 @@ btn3.addEventListener('click', () => {
     canva_domain.change_animation(free_hand_complex_to_complex_animation);
     canva_img.change_animation(free_hand_complex_to_complex_animation);
 });
+
+/* A "Defesa em Camadas" completa via JavaScript
+  para bloquear zoom em todos os dispositivos.
+*/
+
+// 1. Bloqueia o "gesturestart" (Específico do Safari/iOS)
+document.addEventListener('gesturestart', function(e) {
+    e.preventDefault();
+}, { passive: false });
+
+// 2. Bloqueia o toque com dois dedos (Pinch-to-Zoom genérico)
+document.addEventListener('touchstart', function(e) {
+    // Se houver mais de um dedo na tela
+    if (e.touches.length > 1) {
+        e.preventDefault();
+    }
+}, { passive: false });
+
+// 3. Bloqueia o "toque duplo" (forma alternativa de zoom)
+document.addEventListener('dblclick', function(e) {
+    e.preventDefault();
+}, { passive: false });
