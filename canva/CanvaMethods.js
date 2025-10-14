@@ -36,7 +36,7 @@ export function print_points(p5, self) {
 
             if (point.current_x > (p5.width * get_inverse_of_scale(self.scaleFactor))/2) {
                 self.sub.forEach(sub_obj => {
-                    sub_obj.points.push(new Point(-250 * get_inverse_of_scale(sub_obj.scaleFactor), point.current_y,point.img_x - self.translate_x, point.img_y - self.translate_y, point.img_x - self.translate_x));
+                    sub_obj.points.push(new Point(-250 * get_inverse_of_scale(sub_obj.scaleFactor), point.current_y,point.img_x - sub_obj.translate_x, point.img_y - sub_obj.translate_y, point.img_x - sub_obj.translate_x));
                 })
 
                 self.points = self.points.filter(point => point.current_x >= (p5.width * get_inverse_of_scale(self.scaleFactor)));
