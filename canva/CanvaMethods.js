@@ -29,28 +29,44 @@ export function print_points(p5, self) {
         self.domain_stable_points.forEach(point => {
             p5.point(point.domain_x, point.domain_y);
         })
+
+        self.points.forEach(point => {
+            point.current_x = p5.lerp(point.current_x, point.current_img_x, 0.01);
+            point.current_y = p5.lerp(point.current_y, point.img_y, 0.01);
+
+            if (point.current_x + 5>= (p5.width * get_inverse_of_scale(self.scaleFactor))) {
+                let new_point = new Point(0 - self.translate_x, point.current_y - self.translate_y,point.img_x - self.translate_x, point.img_y - self.translate_y, point.img_x - self.translate_x);
+
+                self.sub.forEach(sub_obj => {
+                    sub_obj.points.push(new_point);
+                })
+
+                self.points = self.points.filter(point => point.current_x >= (p5.width * get_inverse_of_scale(self.scaleFactor)));
+
+            }
+
+
+
+        })
+
+
+        self.points.forEach(point => {
+            p5.point(point.current_x, point.current_y);
+        })
+    }else {
+
+        self.points.forEach(point => {
+            point.current_x = p5.lerp(point.current_x, point.img_x, 0.01);
+            point.current_y = p5.lerp(point.current_y, point.img_y, 0.01);
+
+            p5.point(point.current_x, point.current_y);
+        })
+
     }
 
-    self.points.forEach(point => {
-        point.current_x = p5.lerp(point.current_x, point.current_img_x, 0.01);
-        point.current_y = p5.lerp(point.current_y, point.img_y, 0.01);
-
-        if (point.current_x > (p5.width * get_inverse_of_scale(self.scaleFactor))) {
-            let new_point = new Point((-200 * get_inverse_of_scale(self.scaleFactor)), point.current_y, point.img_x - (1000 * get_inverse_of_scale(self.scaleFactor)), point.img_y);
-
-            self.sub.forEach(sub_obj => {
-                sub_obj.points.push(new_point);
-            })
-        }
 
 
-    })
 
-    self.points = self.points.filter(point => point.current_x < (400 * get_inverse_of_scale(self.scaleFactor)));
-
-    self.points.forEach(point => {
-        p5.point(point.current_x, point.current_y);
-    })
 }
 
 export function canva_config(p5, self) {
