@@ -51,18 +51,25 @@ export default class PointRealInReal {
             self.touch_begin_x = p5.touches[0].x;
             self.touch_begin_y = p5.touches[0].y;
         }
+        if(p5.touches.length === 1) {
 
-        let position = convert_absolute_position_to_scaled_position(self.scaleFactor, p5.mouseX, p5.mouseY);
 
-        if (self.canva.div.includes('one')) {
-            if(!guard(p5)) {
-                return;
+
+            if (self.canva.div.includes('one')) {
+                if(!guard(p5)) {
+                    return;
+                }
+                // Canva Domain, scalar e transladar valor conforme gráfico, calcula polinômio, tenho valor imagem para todo esse processo.
+
+                let scaled_position = convert_absolute_position_to_scaled_position(self, p5);
+
+                const img = self.polyy.getImage(0, scaled_position.y - self.translate_y, self.poly_user_input);
+
+                const point = new Point(0, scaled_position.y - self.translate_y, img.x - self.translate_x, img.y - self.translate_y, p5.width * get_inverse_of_scale(self.scaleFactor));
+
+
+                print_point(p5, self, point);
             }
-
-            const img = self.polyy.getImage(0, position.y - self.translate_y, self.poly_user_input);
-
-            const point = new Point(0, position.y - self.translate_y, img.x - self.translate_y + (1000 * get_inverse_of_scale(self.scaleFactor)), img.y - self.translate_y);
-            print_point(p5, self, point);
         }
     }
 
