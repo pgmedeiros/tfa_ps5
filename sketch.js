@@ -7,6 +7,25 @@ import PointRealInReal from "./Animations/PointRealInReal.js";
 const elementoTelaCheia = document.getElementById('screen');
 const botaoToggle = document.getElementById('toggle-fullscreen');
 
+let canva_img = null;
+let canvase = null;
+
+
+
+const free_hand_complex_to_complex_animation = new FreeHandComplexInComplex();
+const point_complex_to_complex_animation = new PointComplexInComplex();
+const point_real_to_real_animation = new PointRealInReal();
+
+
+async function create_canvas() {
+
+    canva_img = await new Canvase(400, 400, 'two', 0, [], point_real_to_real_animation);
+    canvase = await new Canvase(400, 400, 'one', 100, [canva_img], point_real_to_real_animation);
+
+}
+
+create_canvas();
+
 botaoToggle.addEventListener('click', () => {
     // Verifica se já estamos em modo tela cheia
     if (!document.fullscreenElement) {
@@ -25,15 +44,6 @@ botaoToggle.addEventListener('click', () => {
             });
     }
 });
-
-const free_hand_complex_to_complex_animation = new FreeHandComplexInComplex();
-const point_complex_to_complex_animation = new PointComplexInComplex();
-const point_real_to_real_animation = new PointRealInReal();
-
-
-const canva_img = new Canvase(400, 400, 'two', 0, [], point_real_to_real_animation);
-const canvase = new Canvase(400, 400, 'one', 100, [canva_img], point_real_to_real_animation);
-
 
 let btn1 = document.getElementById('btn1');
 btn1.addEventListener('click', () => {
