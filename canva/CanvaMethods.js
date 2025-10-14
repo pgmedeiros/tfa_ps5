@@ -31,15 +31,26 @@ export function print_points(p5, self) {
         })
 
         self.points.forEach(point => {
-            point.current_x = p5.lerp(point.current_x, point.current_img_x, 0.01);
-            point.current_y = p5.lerp(point.current_y, point.img_y, 0.01);
+            point.current_x = p5.lerp(point.current_x, point.abs_img_x, 0.01);
+            point.current_y = p5.lerp(point.current_y, point.abs_img_y, 0.01);
 
-            if (point.current_x > (p5.width * get_inverse_of_scale(self.scaleFactor))/2) {
+            if (point.current_x > (p5.width * get_inverse_of_scale(self.scaleFactor))) {
                 self.sub.forEach(sub_obj => {
-                    sub_obj.points.push(new Point(-250 * get_inverse_of_scale(sub_obj.scaleFactor), point.current_y,point.img_x - sub_obj.translate_x, point.img_y - sub_obj.translate_y, point.img_x - sub_obj.translate_x));
+                    sub_obj.points.push(
+                        new Point(
+                        -250 * get_inverse_of_scale(sub_obj.scaleFactor),
+                        point.current_y,
+                        point.img_x - sub_obj.translate_x,
+                        point.img_y - sub_obj.translate_y,
+                        point.img_x - sub_obj.translate_x,
+                            point.abs_domain_x,
+                            point.abs_domain_y,
+                            point.abs_img_x,
+                            point.abs_img_y
+                        ));
                 })
 
-                self.points = self.points.filter(point => point.current_x >= (p5.width * get_inverse_of_scale(self.scaleFactor)));
+                self.points = self.points.filter(point => point.current_x >= p5.width);
 
             }
 
@@ -81,7 +92,7 @@ export function mouse_movement(p5, self, sub, polyy) {
         }
 
         if (self.dragged === true && p5.pmouseX !== p5.mouseX && p5.pmouseX !== p5.mouseX) {
-            let position = transform_point(self.scaleFactor, p5.mouseX, p5.mouseY);
+            let position = convert_absolute_position_to_scaled_position(self.scaleFactor, p5.mouseX, p5.mouseY);
             let point = p5.createVector(position.x - self.translate_x, position.y - self.translate_y);
             let img_p = polyy.getImage(position.x,  position.y, self.poly_user_input);
             let imgPoint = p5.createVector(img_p.x, img_p.y);
@@ -172,13 +183,13 @@ export function guard(p5) {
     }
 }
 
-export function transform_point(scale, x_position, y_position) {
+export function convert_absolute_position_to_scaled_position(self, p5) {
 
-    const inverse_of_scale = get_inverse_of_scale(scale);
+    const inverse_of_scale = get_inverse_of_scale(self.scaleFactor);
 
     return {
-        x: inverse_of_scale * (x_position - 200),
-        y: inverse_of_scale * (y_position - 200)
+        x: inverse_of_scale * (p5.mouseX - (p5.width)/2),
+        y: inverse_of_scale * (p5.mouseY - (p5.height)/2)
     }
 }
 

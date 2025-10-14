@@ -11,7 +11,7 @@ import {
     print_point,
     print_points,
     scale_and_movement,
-    transform_point
+    convert_absolute_position_to_scaled_position
 } from "../canva/CanvaMethods.js";
 import Point from "../canva/Point.js";
 
@@ -50,16 +50,27 @@ export default class PointComplexInComplex {
                 self.touch_begin_y = p5.touches[0].y;
             }
             if(p5.touches.length === 1) {
-                let position = transform_point(self.scaleFactor, p5.mouseX, p5.mouseY);
+                let scaled_position = convert_absolute_position_to_scaled_position(self, p5);
 
                 if (self.canva.div.includes('one')) {
                     if(!guard(p5)) {
                         return;
                     }
 
-                    const img = self.polyy.getImage(position.x - self.translate_x, position.y - self.translate_y, self.poly_user_input);
+                    const img = self.polyy.getImage(scaled_position.x - self.translate_x, scaled_position.y - self.translate_y, self.poly_user_input);
 
-                    const point = new Point(position.x - self.translate_x, position.y - self.translate_y, img.x - self.translate_x, img.y - self.translate_y, p5.width * get_inverse_of_scale(self.scaleFactor));
+                    const point = new Point(
+                        scaled_position.x - self.translate_x,
+                        scaled_position.y - self.translate_y,
+                        img.x - self.translate_x,
+                        img.y - self.translate_y,
+                        p5.width * get_inverse_of_scale(self.scaleFactor),
+                        p5.mouseX,
+                        p5.mouseY,
+                        img.x + 200 + 500,
+                        img.y + 200
+                    );
+
                     print_point(p5, self, point);
                 }
             }

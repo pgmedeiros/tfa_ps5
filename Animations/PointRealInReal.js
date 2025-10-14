@@ -11,7 +11,7 @@ import {
     print_point,
     print_points,
     scale_and_movement,
-    transform_point
+    convert_absolute_position_to_scaled_position
 } from "../canva/CanvaMethods.js";
 import Point from "../canva/Point.js";
 
@@ -52,7 +52,7 @@ export default class PointRealInReal {
             self.touch_begin_y = p5.touches[0].y;
         }
 
-        let position = transform_point(self.scaleFactor, p5.mouseX, p5.mouseY);
+        let position = convert_absolute_position_to_scaled_position(self.scaleFactor, p5.mouseX, p5.mouseY);
 
         if (self.canva.div.includes('one')) {
             if(!guard(p5)) {
