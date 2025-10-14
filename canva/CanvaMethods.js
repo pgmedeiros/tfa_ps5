@@ -31,24 +31,17 @@ export function print_points(p5, self) {
         })
 
         self.points.forEach(point => {
-            point.current_x = p5.lerp(point.current_x, point.abs_img_x, 0.01);
-            point.current_y = p5.lerp(point.current_y, point.abs_img_y, 0.01);
+            point.current_x = p5.lerp(point.current_x, point.current_img_x, 0.01);
+            point.current_y = p5.lerp(point.current_y, point.img_y, 0.01);
 
-            if (point.current_x > (p5.width * get_inverse_of_scale(self.scaleFactor))) {
+            if (point.current_x > (p5.width * get_inverse_of_scale(self.scaleFactor))/2) {
                 self.sub.forEach(sub_obj => {
-                    sub_obj.points.push(
-                        new Point(
-                        -250 * get_inverse_of_scale(sub_obj.scaleFactor),
-                        point.current_y,
-                        point.img_x - sub_obj.translate_x,
-                        point.img_y - sub_obj.translate_y,
-                        point.img_x - sub_obj.translate_x,
-                            point.abs_domain_x,
-                            point.abs_domain_y,
-                            point.abs_img_x,
-                            point.abs_img_y
-                        ));
-                })
+                    sub_obj.points.push(new Point(-250 * get_inverse_of_scale(sub_obj.scaleFactor),
+                        point.current_y - self.translate_y,
+                        point.img_x - self.translate_x,
+                        point.img_y - self.translate_y,
+                        point.img_x - self.translate_x));
+                });
 
                 self.points = self.points.filter(point => point.current_x >= p5.width);
 
@@ -193,6 +186,15 @@ export function convert_absolute_position_to_scaled_position(self, p5) {
     }
 }
 
+export function convert_scaled_position_to_absolute_position(self, p5, img) {
+    const inverse_of_scale = get_inverse_of_scale(self.scaleFactor);
+
+    return {
+        x: (img.x + (p5.width)/2) / inverse_of_scale,
+        y: (img.y + (p5.height)/2) / inverse_of_scale
+    }
+}
+
 export function get_inverse_of_scale(scale) {
     return 1 / scale;
 }
@@ -226,4 +228,37 @@ export function scale_guard(p5) {
 
 export function calc_distance_between_to_touches(p5) {
     return p5.dist(p5.touches[0].x, p5.touches[0].y, p5.touches[1].x, p5.touches[1].y);
+}
+
+export function get_deslocation_in_domain(self) {
+
+    if (self.translate_x === self.subs[0].translate_y) {
+        return 0;
+    }
+
+    if (self.translate_y < 0 && self.subs[0].translate_y > 0) {
+        return abs(self.translate_y) + abs(self.subs[0].translate_y)
+    }
+
+    if (self.translate_y > 0 && self.subs[0].translate_y < 0) {
+        return -(abs(self.translate_y) + abs(self.subs[0].translate_y))
+    }
+
+    if (self.translate_y > 0 && self.subs[0].translate_y > 0) {
+        if(self.translate_y > self.subs[0].translate_y) {
+            return -(abs(self.translate_y) + abs(self.subs[0].translate_y))
+        } else {
+            return (abs(self.translate_y) + abs(self.subs[0].translate_y))
+        }
+    }
+
+    if (self.translate_x < 0 && self.translate_y < 0) {
+        if(self.translate_x < self.translate_y) {
+            return (abs(self.translate_x) + abs(self.translate_y))
+        } else {
+            return -(abs(self.translate_x) + abs(self.translate_y))
+        }
+    }
+
+
 }

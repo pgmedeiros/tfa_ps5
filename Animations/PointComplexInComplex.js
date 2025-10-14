@@ -7,7 +7,6 @@ import {
     create_subs,
     get_inverse_of_scale,
     guard,
-    mouse_movement,
     print_point,
     print_points,
     scale_and_movement,
@@ -50,26 +49,21 @@ export default class PointComplexInComplex {
                 self.touch_begin_y = p5.touches[0].y;
             }
             if(p5.touches.length === 1) {
-                let scaled_position = convert_absolute_position_to_scaled_position(self, p5);
+
+
 
                 if (self.canva.div.includes('one')) {
                     if(!guard(p5)) {
                         return;
                     }
+                    // Canva Domain, scalar e transladar valor conforme gráfico, calcula polinômio, tenho valor imagem para todo esse processo.
+
+                    let scaled_position = convert_absolute_position_to_scaled_position(self, p5);
 
                     const img = self.polyy.getImage(scaled_position.x - self.translate_x, scaled_position.y - self.translate_y, self.poly_user_input);
 
-                    const point = new Point(
-                        scaled_position.x - self.translate_x,
-                        scaled_position.y - self.translate_y,
-                        img.x - self.translate_x,
-                        img.y - self.translate_y,
-                        p5.width * get_inverse_of_scale(self.scaleFactor),
-                        p5.mouseX,
-                        p5.mouseY,
-                        img.x + 200 + 500,
-                        img.y + 200
-                    );
+                    const point = new Point(scaled_position.x - self.translate_x, scaled_position.y - self.translate_y, img.x - self.translate_x, img.y - self.translate_y, p5.width * get_inverse_of_scale(self.scaleFactor));
+
 
                     print_point(p5, self, point);
                 }
