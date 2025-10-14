@@ -79,7 +79,7 @@ export function mouse_movement(p5, self, sub, polyy) {
 
 export function canva_design(p5, self) {
     const inverse_of_scale = get_inverse_of_scale(self.scaleFactor);
-    p5.stroke(0, 255, 255);
+    p5.stroke(255, 255, 255);
     p5.strokeWeight(inverse_of_scale * 3);
     p5.strokeJoin(p5.ROUND);
     p5.noFill();
