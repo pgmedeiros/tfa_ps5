@@ -43,7 +43,7 @@ export function print_points(p5, self) {
                         point.img_x - self.translate_x));
                 });
 
-                self.points = self.points.filter(point => point.current_x <= p5.width);
+                self.points = self.points.filter(point => point.current_x >= p5.width);
 
             }
 
