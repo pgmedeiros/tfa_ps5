@@ -35,10 +35,8 @@ export function print_points(p5, self) {
             point.current_y = p5.lerp(point.current_y, point.img_y, 0.01);
 
             if (point.current_x > (p5.width * get_inverse_of_scale(self.scaleFactor))/2) {
-                let new_point = new Point(-200, point.current_y - self.translate_y,point.img_x - self.translate_x, point.img_y - self.translate_y, point.img_x - self.translate_x);
-
                 self.sub.forEach(sub_obj => {
-                    sub_obj.points.push(new_point);
+                    sub_obj.points.push(new Point(-200 * get_inverse_of_scale(sub_obj.scaleFactor), point.current_y - self.translate_y,point.img_x - self.translate_x, point.img_y - self.translate_y, point.img_x - self.translate_x));
                 })
 
                 self.points = self.points.filter(point => point.current_x >= (p5.width * get_inverse_of_scale(self.scaleFactor)));
