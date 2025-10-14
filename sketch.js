@@ -21,7 +21,7 @@ function create_canva_img() {
             const canva_img= new Canvase(400, 400, 'two', 0, [], point_real_to_real_animation);
             console.log("(1) Imagem criada:", canva_img);
             resolve(canva_img);
-        }, 1500);
+        }, 2500);
     });
 }
 
