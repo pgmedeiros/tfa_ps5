@@ -1,30 +1,62 @@
 import FreeHandComplexInComplex from "./Animations/FreeHandComplexInComplex.js";
 import Canvase from "./Animations/Canvase.js";
-import Canvas from "./Animations/Canvas.js";
 import PointComplexInComplex from "./Animations/PointComplexInComplex.js";
 import PointRealInReal from "./Animations/PointRealInReal.js";
 
 const elementoTelaCheia = document.getElementById('screen');
 const botaoToggle = document.getElementById('toggle-fullscreen');
 
+let canva_domain = null;
 let canva_img = null;
-let canvase = null;
-
 
 
 const free_hand_complex_to_complex_animation = new FreeHandComplexInComplex();
 const point_complex_to_complex_animation = new PointComplexInComplex();
 const point_real_to_real_animation = new PointRealInReal();
 
-
-async function create_canvas() {
-
-    canva_img = await new Canvase(400, 400, 'two', 0, [], point_real_to_real_animation);
-    canvase = await new Canvase(400, 400, 'one', 100, [canva_img], point_real_to_real_animation);
-
+function create_canva_img() {
+    console.log("(1) Iniciando criação do canva domínio");
+    return new Promise(resolve => {
+        setTimeout(() => {
+            const canva_img= new Canvase(400, 400, 'two', 0, [], point_real_to_real_animation);
+            console.log("(1) Imagem criada:", canva_img);
+            resolve(canva_img);
+        }, 1500);
+    });
 }
 
-create_canvas();
+function create_canva_domain(img) {
+    console.log(`(2) Iniciando criação do dominio`);
+    return new Promise(resolve => {
+        setTimeout(() => {
+            const canva_domain = new Canvase(400, 400, 'one', 100, [img], point_real_to_real_animation);
+            console.log("(2) Objeto 2 criado:", canva_domain);
+            resolve(canva_domain);
+        }, 1000);
+    });
+}
+
+async function create_everything() {
+    console.log("--- PROCESSO INICIADO ---");
+    try {
+        // 1. ESPERA o Objeto 1 ficar pronto
+        canva_img = await create_canva_img();
+
+        // 2. ESTA LINHA SÓ EXECUTA DEPOIS QUE O AWAIT ACIMA TERMINAR
+        //    Garantindo que temos o obj1 antes de prosseguir.
+        canva_domain = await create_canva_domain(canva_img); // Passa a dependência
+
+        // 3. Tudo pronto!
+        console.log("--- PROCESSO CONCLUÍDO ---");
+        console.log("Resultado Final (Obj1):", canva_img);
+        console.log("Resultado Final (Obj2):", canva_domain);
+
+    } catch (erro) {
+        console.error("Ocorreu um erro em uma das etapas:", erro);
+    }
+}
+
+create_everything();
 
 botaoToggle.addEventListener('click', () => {
     // Verifica se já estamos em modo tela cheia
@@ -47,26 +79,26 @@ botaoToggle.addEventListener('click', () => {
 
 let btn1 = document.getElementById('btn1');
 btn1.addEventListener('click', () => {
-    canvase.domain_stable_points = []
-    canvase.points = [];
+    canva_domain.domain_stable_points = []
+    canva_domain.points = [];
     canva_img.domain_stable_points = []
     canva_img.points = [];
-    canvase.change_animation(point_real_to_real_animation);
+    canva_domain.change_animation(point_real_to_real_animation);
     canva_img.change_animation(point_real_to_real_animation);
 });
 
 let btn2 = document.getElementById('c_em_c_ponto');
 btn2.addEventListener('click', () => {
-    canvase.domain_stable_points = []
-    canvase.points = [];
+    canva_domain.domain_stable_points = []
+    canva_domain.points = [];
     canva_img.domain_stable_points = []
     canva_img.points = [];
-    canvase.change_animation(point_complex_to_complex_animation);
+    canva_domain.change_animation(point_complex_to_complex_animation);
     canva_img.change_animation(point_complex_to_complex_animation);
 });
 
 let btn3 = document.getElementById('c_em_c_livre');
 btn3.addEventListener('click', () => {
-    canvase.change_animation(free_hand_complex_to_complex_animation);
+    canva_domain.change_animation(free_hand_complex_to_complex_animation);
     canva_img.change_animation(free_hand_complex_to_complex_animation);
 });
