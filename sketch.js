@@ -58,7 +58,7 @@ async function create_everything() {
 
 create_everything();
 
-botaoToggle.addEventListener('click', () => {
+/**botaoToggle.addEventListener('click', () => {
     // Verifica se já estamos em modo tela cheia
     if (!document.fullscreenElement) {
         // Se não estiver, solicita a tela cheia para o elemento
@@ -76,7 +76,7 @@ botaoToggle.addEventListener('click', () => {
             });
     }
 });
-
+*/
 let btn1 = document.getElementById('btn1');
 btn1.addEventListener('click', () => {
     canva_domain.domain_stable_points = []
