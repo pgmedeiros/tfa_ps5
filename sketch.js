@@ -2,6 +2,7 @@ import FreeHandComplexInComplex from "./Animations/FreeHandComplexInComplex.js";
 import Canvase from "./Animations/Canvase.js";
 import PointComplexInComplex from "./Animations/PointComplexInComplex.js";
 import PointRealInReal from "./Animations/PointRealInReal.js";
+import CircleComplexInComplex from "./Animations/CircleComplexInComplex.js";
 
 const elementoTelaCheia = document.getElementById('screen');
 const botaoToggle = document.getElementById('toggle-fullscreen');
@@ -13,6 +14,7 @@ let canva_img = null;
 const free_hand_complex_to_complex_animation = new FreeHandComplexInComplex();
 const point_complex_to_complex_animation = new PointComplexInComplex();
 const point_real_to_real_animation = new PointRealInReal();
+const circle_comple_to_complex = new CircleComplexInComplex();
 
 function create_canva_img() {
     console.log("(1) Iniciando criação do canva domínio");
@@ -101,6 +103,13 @@ let btn3 = document.getElementById('c_em_c_livre');
 btn3.addEventListener('click', () => {
     canva_domain.change_animation(free_hand_complex_to_complex_animation);
     canva_img.change_animation(free_hand_complex_to_complex_animation);
+});
+
+let btn4 = document.getElementById('c_em_c_circulo');
+btn4.addEventListener('click', () => {
+    console.log('Função Circle ativada.');
+    canva_domain.change_animation(circle_comple_to_complex);
+    canva_img.change_animation(circle_comple_to_complex);
 });
 
 /* A "Defesa em Camadas" completa via JavaScript

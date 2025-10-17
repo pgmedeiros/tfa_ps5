@@ -18,6 +18,28 @@ export function print_lines(t_x, t_y, lines, p5) {
     })
 }
 
+export function get_circle_points(self, p5){
+    self.circle_line = []
+
+
+    if (self.canva.div.includes('one')) {
+
+        for (let angulo = 0; angulo < 360; angulo += 1) {
+
+            let x = ((p5.width / 2) + self.raio) * p5.cos(degreesToRadians(angulo));
+            let y = ((p5.height / 2) + self.raio) * p5.sin(degreesToRadians(angulo));
+
+            self.circle_line.push(p5.createVector(x, y));
+
+
+            let img_p = self.polyy.getImage(x, y, self.poly_user_input);
+            let imgPoint = p5.createVector(img_p.x, img_p.y);
+            self.circle_line.push(imgPoint);
+        }
+    }
+}
+
+
 export function print_point(p5, self, point) {
     self.points.push(point);
     self.domain_stable_points.push(point);
@@ -75,7 +97,7 @@ export function canva_config(p5, self) {
     let inverse_of_scale = get_inverse_of_scale(self.scaleFactor);
     p5.scale(self.scaleFactor);
     p5.translate(((self.div_interna.clientWidth / 2) * inverse_of_scale) + self.translate_x, ((self.div_interna.clientHeight / 2) * inverse_of_scale) + self.translate_y);
-    p5.circle(0, 0, 100);
+    //p5.circle(0, 0, 100);
 }
 
 export function mouse_movement(p5, self, sub, polyy) {
@@ -261,4 +283,10 @@ export function get_deslocation_in_domain(self) {
     }
 
 
+
+}
+
+
+function degreesToRadians(degrees) {
+    return degrees * (Math.PI / 180);
 }
