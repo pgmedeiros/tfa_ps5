@@ -9,7 +9,7 @@ const botaoToggle = document.getElementById('toggle-fullscreen');
 
 let canva_domain = null;
 let canva_img = null;
-
+let pode_mostrar_botao = false;
 
 const free_hand_complex_to_complex_animation = new FreeHandComplexInComplex();
 const point_complex_to_complex_animation = new PointComplexInComplex();
@@ -79,8 +79,24 @@ create_everything();
     }
 });
 */
+
+const barra_circle = document.getElementById('barra_circle');
+
+function atualizarVisibilidadeBotao() {
+    if (pode_mostrar_botao) {
+        // Se a condição for verdadeira, REMOVE a classe que esconde o botão
+        barra_circle.classList.remove('escondido');
+    } else {
+        // Se for falsa, ADICIONA a classe para garantir que ele fique escondido
+        barra_circle.classList.add('escondido');
+    }
+}
+
+
 let btn1 = document.getElementById('btn1');
 btn1.addEventListener('click', () => {
+    pode_mostrar_botao = false;
+    atualizarVisibilidadeBotao();
     canva_domain.domain_stable_points = []
     canva_domain.points = [];
     canva_img.domain_stable_points = []
@@ -91,6 +107,8 @@ btn1.addEventListener('click', () => {
 
 let btn2 = document.getElementById('c_em_c_ponto');
 btn2.addEventListener('click', () => {
+    pode_mostrar_botao = false;
+    atualizarVisibilidadeBotao();
     canva_domain.domain_stable_points = []
     canva_domain.points = [];
     canva_img.domain_stable_points = []
@@ -101,6 +119,8 @@ btn2.addEventListener('click', () => {
 
 let btn3 = document.getElementById('c_em_c_livre');
 btn3.addEventListener('click', () => {
+    pode_mostrar_botao = false;
+    atualizarVisibilidadeBotao();
     canva_domain.change_animation(free_hand_complex_to_complex_animation);
     canva_img.change_animation(free_hand_complex_to_complex_animation);
 });
@@ -108,6 +128,8 @@ btn3.addEventListener('click', () => {
 let btn4 = document.getElementById('c_em_c_circulo');
 btn4.addEventListener('click', () => {
     console.log('Função Circle ativada.');
+    pode_mostrar_botao = true;
+    atualizarVisibilidadeBotao();
     canva_domain.change_animation(circle_comple_to_complex);
     canva_img.change_animation(circle_comple_to_complex);
 });
@@ -133,3 +155,20 @@ document.addEventListener('touchstart', function(e) {
 document.addEventListener('dblclick', function(e) {
     e.preventDefault();
 }, { passive: false });
+
+let voltar = document.getElementById('voltar');
+voltar.addEventListener('click', () => {
+    canva_domain.velocity_state = -1;
+});
+
+let pausar = document.getElementById('pausar');
+pausar.addEventListener('click', () => {
+    canva_domain.velocity_state = 0;
+});
+
+let ir = document.getElementById('ir');
+ir.addEventListener('click', () => {
+    canva_domain.velocity_state = 1;
+});
+
+

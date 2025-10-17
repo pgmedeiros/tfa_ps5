@@ -4,7 +4,7 @@ import {
     canva_config,
     canva_design,
     create_polynomial_button,
-    create_subs, get_circle_points,
+    create_subs, get_circle_points, get_velocity,
     print_line, scale_and_movement
 } from "../canva/CanvaMethods.js";
 
@@ -17,8 +17,6 @@ export default class CircleComplexInComplex {
         create_subs(self);
         self.canva.background(self.color);
         create_polynomial_button(p5, self);
-        p5.angleMode(p5.DEGREES);
-
     };
 
     draw(self, p5){
@@ -27,6 +25,7 @@ export default class CircleComplexInComplex {
         canva_design(p5, self);
         get_circle_points(self, p5);
         print_line(self.translate_x, self.translate_y, self.circle_line, p5);
+        self.raio = get_velocity(self) + self.raio;
     }
 
     mouseDragged(self, p5) {

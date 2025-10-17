@@ -29,8 +29,9 @@ export default class Canvase {
         self.animation = animation;
         self.points = [];
         self.domain_stable_points = [];
-        self.raio = 1;
+        self.raio = 0;
         self.pontosDoCirculo = [];
+        self.velocity_state = 1;
 
         this.p5_instance = new p5(
                 function (p5, animation) {

@@ -28,8 +28,8 @@ export function get_circle_points(self, p5){
 
         for (let angulo = 0; angulo < 360; angulo += 1) {
 
-            let x = ((p5.width / 2) + self.raio) * p5.cos(degreesToRadians(angulo));
-            let y = ((p5.height / 2) + self.raio) * p5.sin(degreesToRadians(angulo));
+            let x = (self.raio) * p5.cos(degreesToRadians(angulo));
+            let y = (self.raio) * p5.sin(degreesToRadians(angulo));
 
             self.circle_line.push(p5.createVector(x, y));
 
@@ -294,4 +294,14 @@ export function get_deslocation_in_domain(self) {
 
 function degreesToRadians(degrees) {
     return degrees * (Math.PI / 180);
+}
+
+export function get_velocity(self) {
+    if (self.velocity_state === -1) {
+        return -0.05;
+    }else if (self.velocity_state === 0) {
+        return 0;
+    } else {
+        return 0.05;
+    }
 }

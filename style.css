@@ -167,3 +167,7 @@ html, body {
 .button-bar button:hover {
   background-color: #2980b9;
 }
+
+.escondido {
+  display: none;
+}
