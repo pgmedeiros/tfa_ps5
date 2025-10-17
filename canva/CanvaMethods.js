@@ -237,8 +237,8 @@ export function scale_and_movement(self, p5) {
             self.prevDist = currentDist;
             //self.translate_x += (p5.touches[0].x - self.touch_begin_x)/80*inverse_of_scale;
             //self.translate_y += (p5.touches[0].y - self.touch_begin_y)/80*inverse_of_scale;
-            self.translate_x += p5.movedX;
-            self.translate_y += p5.movedY;
+            self.translate_x += p5.movedX * get_inverse_of_scale(self.scaleFactor);
+            self.translate_y += p5.movedY * get_inverse_of_scale(self.scaleFactor);
         }
     }
     else {
