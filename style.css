@@ -152,6 +152,30 @@ html, body {
   padding: 0;
 }
 
+.button-bar-velocity {
+  /* 1. Tira a div do fluxo normal da página (mantido) */
+  position: absolute; /* ou position: fixed; se quiser que fique na base mesmo com rolagem */
+
+  /* 2. Define a posição: */
+  left: 50%;                 /* ANTES: left: 50px;  -> Move o canto esquerdo para o centro */
+  bottom: 35px;              /* NOVO: Define a distância da base da tela */
+  /* top: 50px; foi removido */
+
+  /* NOVO: Ajusta a posição final para centralizar o elemento */
+  transform: translateX(-50%);
+
+  /* 3. Define a ordem (mantido) */
+  z-index: 10;
+
+  /* Estilos para deixar mais visível (mantidos) */
+  background-color: #2c3e50;
+  border: none;
+  padding: 20px;
+  width: 250px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center; /* Apenas para o texto interno ficar bonito */
+}
+
 /* 4. Estilo básico para os botões */
 .button-bar button {
   border: none;
