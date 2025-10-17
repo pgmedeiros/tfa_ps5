@@ -19,10 +19,12 @@ export function print_lines(t_x, t_y, lines, p5) {
 }
 
 export function get_circle_points(self, p5){
-    self.circle_line = []
-
 
     if (self.canva.div.includes('one')) {
+        self.circle_line = []
+        self.sub.forEach(sub_obj => {
+            sub_obj.circle_line = [];
+        });
 
         for (let angulo = 0; angulo < 360; angulo += 1) {
 
@@ -34,7 +36,10 @@ export function get_circle_points(self, p5){
 
             let img_p = self.polyy.getImage(x, y, self.poly_user_input);
             let imgPoint = p5.createVector(img_p.x, img_p.y);
-            self.circle_line.push(imgPoint);
+
+            self.sub.forEach(sub_obj => {
+                sub_obj.circle_line.push(imgPoint);
+            });
         }
     }
 }
