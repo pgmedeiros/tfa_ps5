@@ -180,6 +180,7 @@ export function create_polynomial_button(p5, self) {
         self.button.style('border', 'none');
 
         self.button.mousePressed(() => {
+            self.raio = 0;
             self.poly_user_input = self.input.value();
             self.lines = [];
             self.sub.forEach(canva => {
