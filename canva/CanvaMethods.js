@@ -298,10 +298,10 @@ function degreesToRadians(degrees) {
 
 export function get_velocity(self) {
     if (self.velocity_state === -1) {
-        return -0.05;
+        return -0.1;
     }else if (self.velocity_state === 0) {
         return 0;
     } else {
-        return 0.05;
+        return 0.1;
     }
 }
