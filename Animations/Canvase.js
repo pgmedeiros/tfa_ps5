@@ -20,7 +20,7 @@ export default class Canvase {
         self.sub = sub;
         self.div_interna = null;
         self.div = div;
-        self.scaleFactor = 1.0;
+        self.scaleFactor = 10.0;
         self.translate_x = 0;
         self.translate_y = 0;
         self.touch_begin_x = 0;
